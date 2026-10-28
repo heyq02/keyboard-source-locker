@@ -10,6 +10,7 @@ export default defineConfig({
             build: "node scripts/build.mjs",
             start: "node scripts/run-app.mjs",
             package: "node scripts/package.mjs",
+            icon: "node scripts/icon.mjs",
             clean: "node scripts/clean.mjs",
             check: "node scripts/check.mjs",
             coverage: "node scripts/coverage.mjs",

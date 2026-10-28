@@ -36,6 +36,9 @@ if (!existsSync(binary)) {
   process.exit(1)
 }
 
+console.log('==> Ensuring AppIcon.icns')
+run('node', [path.join(rootDir, 'scripts', 'icon.mjs')])
+
 console.log(`==> Packaging ${appName}.app`)
 rmSync(appDir, { recursive: true, force: true })
 mkdirSync(path.join(appDir, 'Contents', 'MacOS'), { recursive: true })
@@ -43,9 +46,12 @@ mkdirSync(path.join(appDir, 'Contents', 'Resources'), { recursive: true })
 
 const appBinary = path.join(appDir, 'Contents', 'MacOS', product)
 const appInfoPlist = path.join(appDir, 'Contents', 'Info.plist')
+const appResources = path.join(appDir, 'Contents', 'Resources')
+const icns = path.join(rootDir, 'Resources', 'AppIcon.icns')
 cpSync(binary, appBinary)
 cpSync(path.join(rootDir, 'Resources', 'Info.plist'), appInfoPlist)
-cpSync(path.join(rootDir, 'package.json'), path.join(appDir, 'Contents', 'Resources', 'package.json'))
+cpSync(path.join(rootDir, 'package.json'), path.join(appResources, 'package.json'))
+cpSync(icns, path.join(appResources, 'AppIcon.icns'))
 chmodSync(appBinary, 0o755)
 
 run('/usr/libexec/PlistBuddy', ['-c', `Set :CFBundleShortVersionString ${version}`, appInfoPlist])

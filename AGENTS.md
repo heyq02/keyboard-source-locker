@@ -18,7 +18,8 @@ macOS menu-bar utility that locks the active keyboard input source (Swift Packag
 | `Tests/CoreTestRunner` | CLT test harness (not XCTest / Swift Testing) |
 | `scripts/*.mjs` | Build / package / coverage helpers |
 | `vite.config.ts` | `run.tasks` for `vp run …` |
-| `Resources/Info.plist` | Packaged `.app` (`LSUIElement`) |
+| `Resources/Info.plist` | Packaged `.app` metadata (`LSUIElement`, icon, copyright) |
+| `images/app-icon.jpg` | Source art for `vp run icon` → `Resources/AppIcon.icns` |
 
 Target `path`s are explicit under `src/` in `Package.swift`.
 
@@ -29,7 +30,8 @@ pnpm install
 vp run test       # CoreTestRunner
 vp run coverage   # instrumented tests; fail if line cover < 90% on src/KeyboardSourceLocker
 vp run build      # KeyboardSourceLockerApp
-vp run package    # dist/KeyboardSourceLocker.app
+vp run package    # dist/KeyboardSourceLocker.app (rebuilds AppIcon.icns)
+vp run icon       # rebuild Resources/AppIcon.icns from images/app-icon.jpg
 vp run version    # print package.json version via VersionTool
 vp run check      # debug smoke build of products
 vp run clean
