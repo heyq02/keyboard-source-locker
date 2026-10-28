@@ -11,9 +11,20 @@ A tiny macOS **menu-bar** utility that locks your active keyboard input source t
 macOS will not let you remove the built-in **ABC** layout, so the system can switch to it unexpectedly. Keyboard Source Locker watches for those switches and restores your preferred source after a short debounce.
 
 <p align="center">
+  <img src="images/hero-banner.jpg" alt="Keyboard Source Locker hero banner" width="800" />
+</p>
+
+<p align="center">
+  <img src="images/menu-preview.jpg" alt="Menu bar preview" width="520" />
+</p>
+
+<details>
+<summary>Problem evidence (System Settings)</summary>
+<p align="center">
   <img src="images/abc-input-source.png" alt="macOS Input Sources showing ABC cannot be removed" width="420" />
   <img src="images/wx-input-source.png" alt="WeChat Input Method in Input Sources" width="420" />
 </p>
+</details>
 
 ## Features
 
