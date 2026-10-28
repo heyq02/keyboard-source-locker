@@ -2,7 +2,7 @@ import Foundation
 
 public enum AppVersion {
     /// Keep in sync with `Resources/Info.plist` CFBundleShortVersionString for `swift run` builds.
-    public static let fallback = "0.0.2"
+    public static let fallback = "0.0.3"
 
     public static func display(bundleShortVersion: String?, bundleBuild: String?) -> String {
         let short = bundleShortVersion?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
