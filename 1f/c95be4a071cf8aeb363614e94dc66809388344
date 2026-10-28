@@ -1,0 +1,21 @@
+Resources/Info.plist
+  s_732803a7907060::t_e6615e7e08761d 18,20
+CHANGELOG.md
+  s_732803a7907060::t_15555558124490 10-11,15,18-19,23-24,26,32,34,36-38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "1fc95be4a071cf8aeb363614e94dc66809388344",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
