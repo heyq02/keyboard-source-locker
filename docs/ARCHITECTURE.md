@@ -2,11 +2,11 @@
 
 Keyboard Source Locker is a Swift Package with three products:
 
-| Product | Role |
-| --- | --- |
-| `KeyboardSourceLocker` | Pure-ish core library (policy, persistence, TIS adapter) |
-| `KeyboardSourceLockerApp` | Thin AppKit menu-bar shell |
-| `CoreTestRunner` | Executable test harness (CLT-friendly) |
+| Product                   | Role                                                     |
+| ------------------------- | -------------------------------------------------------- |
+| `KeyboardSourceLocker`    | Pure-ish core library (policy, persistence, TIS adapter) |
+| `KeyboardSourceLockerApp` | Thin AppKit menu-bar shell                               |
+| `CoreTestRunner`          | Executable test harness (CLT-friendly)                   |
 
 ```
 ┌─────────────────────────────────────────────┐

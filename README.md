@@ -64,15 +64,15 @@ Requirements: **macOS 14+**, Swift **6.2+** (Xcode or Command Line Tools).
 3. Turn **Lock: On**
 4. Switch to ABC (menu bar or shortcut) — after ~200 ms it should snap back
 
-| Menu item | Action |
-| --- | --- |
-| Lock: On / Off | Enable or disable restoring |
-| Locked to: … | Shows the current locked target |
-| Select Input Source | Choose the locked target |
-| Launch at Login | Start the app automatically when you log in to macOS |
-| Version … | Shows the current app version |
-| About | Opens the project page |
-| Quit | Stop monitoring and exit |
+| Menu item           | Action                                               |
+| ------------------- | ---------------------------------------------------- |
+| Lock: On / Off      | Enable or disable restoring                          |
+| Locked to: …        | Shows the current locked target                      |
+| Select Input Source | Choose the locked target                             |
+| Launch at Login     | Start the app automatically when you log in to macOS |
+| Version …           | Shows the current app version                        |
+| About               | Opens the project page                               |
+| Quit                | Stop monitoring and exit                             |
 
 > **Launch at Login** works best with the packaged `.app` (for example after `make package` or a GitHub Release install). If macOS asks for approval, allow it under **System Settings → General → Login Items**.
 
@@ -91,10 +91,10 @@ Product intent lives in [docs/DEMAND.md](docs/DEMAND.md) and [docs/PRD.md](docs/
 
 ## CI & releases
 
-| Workflow | Trigger | What it does |
-| --- | --- | --- |
-| [Test](.github/workflows/test.yml) | Every push / PR | Runs tests and compiles the app |
-| [Release](.github/workflows/release.yml) | Git tags `v*` | Tests, packages `.app`, publishes a GitHub Release **and** uploads the zip to GitHub Packages (GHCR) |
+| Workflow                                 | Trigger         | What it does                                                                                         |
+| ---------------------------------------- | --------------- | ---------------------------------------------------------------------------------------------------- |
+| [Test](.github/workflows/test.yml)       | Every push / PR | Runs tests and compiles the app                                                                      |
+| [Release](.github/workflows/release.yml) | Git tags `v*`   | Tests, packages `.app`, publishes a GitHub Release **and** uploads the zip to GitHub Packages (GHCR) |
 
 ```bash
 git tag v1.0.0

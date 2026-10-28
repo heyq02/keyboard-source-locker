@@ -1,13 +1,13 @@
 # PRD: Keyboard Source Locker
 
-| Field | Value |
-| --- | --- |
-| Product | Keyboard Source Locker |
-| Version | v1 |
-| Status | Draft from accepted DEMAND |
-| Platform | macOS |
-| Source | [DEMAND.md](./DEMAND.md) |
-| Last updated | 2026-10-28 |
+| Field        | Value                      |
+| ------------ | -------------------------- |
+| Product      | Keyboard Source Locker     |
+| Version      | v1                         |
+| Status       | Draft from accepted DEMAND |
+| Platform     | macOS                      |
+| Source       | [DEMAND.md](./DEMAND.md)   |
+| Last updated | 2026-10-28                 |
 
 ---
 
@@ -68,13 +68,13 @@ macOS user who types mainly with one preferred input source (often a third-party
 
 ### 4.2 Core use cases
 
-| ID | Use case | Outcome |
-| --- | --- | --- |
-| UC-1 | Enable lock on preferred source | While enabled, active source stays on the chosen target |
-| UC-2 | Change locked target | New target is used for restore immediately; no restart required |
-| UC-3 | Temporarily unlock | Toggle off → normal macOS switching resumes; app stays in menu bar |
-| UC-4 | Quit app | Locking stops; normal macOS switching resumes |
-| UC-5 | Unwanted system/app switch | After short debounce, active source returns to locked target |
+| ID   | Use case                        | Outcome                                                            |
+| ---- | ------------------------------- | ------------------------------------------------------------------ |
+| UC-1 | Enable lock on preferred source | While enabled, active source stays on the chosen target            |
+| UC-2 | Change locked target            | New target is used for restore immediately; no restart required    |
+| UC-3 | Temporarily unlock              | Toggle off → normal macOS switching resumes; app stays in menu bar |
+| UC-4 | Quit app                        | Locking stops; normal macOS switching resumes                      |
+| UC-5 | Unwanted system/app switch      | After short debounce, active source returns to locked target       |
 
 ---
 
@@ -86,27 +86,27 @@ The app runs as a menu-bar–first utility (no required main window for v1).
 
 **Menu must support:**
 
-| Action | Requirement |
-| --- | --- |
-| Status | Show whether lock is On/Off and which source is locked |
-| Toggle lock | Enable / disable locking without quitting |
-| Pick target | Choose any currently installed input source |
-| Quit | Exit the app and stop all restore behavior |
+| Action      | Requirement                                            |
+| ----------- | ------------------------------------------------------ |
+| Status      | Show whether lock is On/Off and which source is locked |
+| Toggle lock | Enable / disable locking without quitting              |
+| Pick target | Choose any currently installed input source            |
+| Quit        | Exit the app and stop all restore behavior             |
 
 Optional / shipped: About, version display, Launch at Login. Still optional: open System Settings → Keyboard.
 
 ### 5.2 Locking behavior
 
-| Rule | Detail |
-| --- | --- |
-| Scope | Global — one locked target for the whole system while enabled |
-| Target | Any input source currently installed / available to the user |
-| Detection | Observe changes to the active input source |
-| Restore | If active ≠ locked target and lock is On → switch back after short debounce |
-| Debounce | Short delay before restore (recommended default **150–300 ms**; exact value tunable in implementation) |
-| Continuous | Watch/restore loop while the app is running and lock is On — not a one-shot action |
-| Target change | Updating the locked target takes effect immediately for subsequent restores |
-| Disable / quit | Stop restoring; leave the current active source as-is |
+| Rule           | Detail                                                                                                 |
+| -------------- | ------------------------------------------------------------------------------------------------------ |
+| Scope          | Global — one locked target for the whole system while enabled                                          |
+| Target         | Any input source currently installed / available to the user                                           |
+| Detection      | Observe changes to the active input source                                                             |
+| Restore        | If active ≠ locked target and lock is On → switch back after short debounce                            |
+| Debounce       | Short delay before restore (recommended default **150–300 ms**; exact value tunable in implementation) |
+| Continuous     | Watch/restore loop while the app is running and lock is On — not a one-shot action                     |
+| Target change  | Updating the locked target takes effect immediately for subsequent restores                            |
+| Disable / quit | Stop restoring; leave the current active source as-is                                                  |
 
 ### 5.3 Persistence
 
@@ -127,31 +127,31 @@ If the previously locked target is no longer installed, disable lock (or prompt 
 
 ## 6. Functional requirements
 
-| ID | Requirement | Priority |
-| --- | --- | --- |
-| FR-1 | List installed input sources in the menu for selection | P0 |
-| FR-2 | Persist and display the currently locked target | P0 |
-| FR-3 | Toggle lock On/Off from the menu bar | P0 |
-| FR-4 | While On, detect active-source changes system-wide | P0 |
-| FR-5 | Restore locked target after short debounce when active source differs | P0 |
-| FR-6 | Changing locked target applies without app restart | P0 |
-| FR-7 | Quit stops monitoring and restoring | P0 |
-| FR-8 | Persist lock state + target across launches | P0 |
-| FR-9 | Handle missing locked target after uninstall/removal of that source | P1 |
-| FR-10 | Launch at Login | P0 (shipped) |
-| FR-11 | Show current app version in the menu | P0 (shipped) |
+| ID    | Requirement                                                           | Priority     |
+| ----- | --------------------------------------------------------------------- | ------------ |
+| FR-1  | List installed input sources in the menu for selection                | P0           |
+| FR-2  | Persist and display the currently locked target                       | P0           |
+| FR-3  | Toggle lock On/Off from the menu bar                                  | P0           |
+| FR-4  | While On, detect active-source changes system-wide                    | P0           |
+| FR-5  | Restore locked target after short debounce when active source differs | P0           |
+| FR-6  | Changing locked target applies without app restart                    | P0           |
+| FR-7  | Quit stops monitoring and restoring                                   | P0           |
+| FR-8  | Persist lock state + target across launches                           | P0           |
+| FR-9  | Handle missing locked target after uninstall/removal of that source   | P1           |
+| FR-10 | Launch at Login                                                       | P0 (shipped) |
+| FR-11 | Show current app version in the menu                                  | P0 (shipped) |
 
 ---
 
 ## 7. Non-functional requirements
 
-| ID | Area | Requirement |
-| --- | --- | --- |
-| NFR-1 | Performance | Restore path must feel near-instant after debounce; no noticeable typing lag |
-| NFR-2 | Resource use | Idle CPU/memory footprint appropriate for an always-on menu-bar utility |
-| NFR-3 | Reliability | Survive common triggers: app focus change, menu-bar input switch, keyboard shortcut switch |
-| NFR-4 | Safety | Never delete or reconfigure system Input Sources lists |
-| NFR-5 | UX clarity | Locked vs unlocked state must be obvious from the menu (and ideally the menu-bar icon) |
+| ID    | Area          | Requirement                                                                                             |
+| ----- | ------------- | ------------------------------------------------------------------------------------------------------- |
+| NFR-1 | Performance   | Restore path must feel near-instant after debounce; no noticeable typing lag                            |
+| NFR-2 | Resource use  | Idle CPU/memory footprint appropriate for an always-on menu-bar utility                                 |
+| NFR-3 | Reliability   | Survive common triggers: app focus change, menu-bar input switch, keyboard shortcut switch              |
+| NFR-4 | Safety        | Never delete or reconfigure system Input Sources lists                                                  |
+| NFR-5 | UX clarity    | Locked vs unlocked state must be obvious from the menu (and ideally the menu-bar icon)                  |
 | NFR-6 | Compatibility | Support recent macOS versions targeted by the implementation (document minimum OS in engineering notes) |
 
 ---
@@ -204,39 +204,39 @@ Mapped from accepted [DEMAND.md](./DEMAND.md):
 
 ### 10.1 Verification checklist (for implementation / QA)
 
-| Check | Pass condition |
-| --- | --- |
-| Pick target | Every listed installed source can be selected as locked target |
-| Global lock | Switch apps; lock target unchanged and still enforced |
-| Debounced restore | Manual switch away → returns to locked target after short delay |
-| Shortcut / menu switch | Both trigger restore while lock On |
-| Retarget | Change target mid-session; next restore uses new target |
-| Toggle Off | No automatic restores while Off |
-| Quit | No further restores after quit |
-| Persistence | Relaunch restores prior On/Off + target |
+| Check                  | Pass condition                                                  |
+| ---------------------- | --------------------------------------------------------------- |
+| Pick target            | Every listed installed source can be selected as locked target  |
+| Global lock            | Switch apps; lock target unchanged and still enforced           |
+| Debounced restore      | Manual switch away → returns to locked target after short delay |
+| Shortcut / menu switch | Both trigger restore while lock On                              |
+| Retarget               | Change target mid-session; next restore uses new target         |
+| Toggle Off             | No automatic restores while Off                                 |
+| Quit                   | No further restores after quit                                  |
+| Persistence            | Relaunch restores prior On/Off + target                         |
 
 ---
 
 ## 11. Risks and open implementation details
 
-| Topic | Note | Owner at build time |
-| --- | --- | --- |
-| Exact debounce ms | DEMAND requires short debounce; PRD recommends 150–300 ms default | Engineering |
-| Input source identity | Prefer stable source ID over localized display name for persistence | Engineering |
-| Accessibility / privacy prompts | May be required depending on APIs used; must be documented for users | Engineering |
-| IME startup races | Some IMEs may briefly report transitional states; debounce should absorb this | Engineering |
-| Menu-bar icon states | Locked/unlocked visual distinction is P1 | Design / Engineering |
+| Topic                           | Note                                                                          | Owner at build time  |
+| ------------------------------- | ----------------------------------------------------------------------------- | -------------------- |
+| Exact debounce ms               | DEMAND requires short debounce; PRD recommends 150–300 ms default             | Engineering          |
+| Input source identity           | Prefer stable source ID over localized display name for persistence           | Engineering          |
+| Accessibility / privacy prompts | May be required depending on APIs used; must be documented for users          | Engineering          |
+| IME startup races               | Some IMEs may briefly report transitional states; debounce should absorb this | Engineering          |
+| Menu-bar icon states            | Locked/unlocked visual distinction is P1                                      | Design / Engineering |
 
 ---
 
 ## 12. Milestones (suggested)
 
-| Milestone | Deliverable |
-| --- | --- |
-| M1 | Menu-bar shell: icon, menu, quit |
-| M2 | List sources + select locked target + persistence |
-| M3 | Detect active source + debounced restore while lock On |
-| M4 | Hardening: missing target, common switch triggers, polish |
+| Milestone | Deliverable                                               |
+| --------- | --------------------------------------------------------- |
+| M1        | Menu-bar shell: icon, menu, quit                          |
+| M2        | List sources + select locked target + persistence         |
+| M3        | Detect active source + debounced restore while lock On    |
+| M4        | Hardening: missing target, common switch triggers, polish |
 
 ---
 
@@ -249,9 +249,9 @@ Mapped from accepted [DEMAND.md](./DEMAND.md):
 
 ### 13.2 Glossary
 
-| Term | Meaning |
-| --- | --- |
-| Input source | A keyboard layout or IME selectable in macOS Input Sources |
-| Locked target | The user-chosen input source the app keeps restoring to |
+| Term           | Meaning                                                         |
+| -------------- | --------------------------------------------------------------- |
+| Input source   | A keyboard layout or IME selectable in macOS Input Sources      |
+| Locked target  | The user-chosen input source the app keeps restoring to         |
 | Short debounce | Brief delay before restore to avoid fighting momentary switches |
-| Global lock | One locked target enforced for all apps while enabled |
+| Global lock    | One locked target enforced for all apps while enabled           |
