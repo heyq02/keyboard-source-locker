@@ -1,0 +1,22 @@
+.gitignore
+  h_a57efa94f24ca5 14-18
+package.json
+  h_a57efa94f24ca5 3-25,27-37,45
+pnpm-workspace.yaml
+  h_a57efa94f24ca5 1-10
+tsconfig.json
+  h_a57efa94f24ca5 1-20
+vite.config.ts
+  h_a57efa94f24ca5 1-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "132c54716beb119bda6f728fd794280cb8f0ee68",
+  "prompts": {},
+  "humans": {
+    "h_a57efa94f24ca5": {
+      "author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
