@@ -1,0 +1,21 @@
+Package.swift
+  s_732803a7907060::t_c4c6f53231d144 1
+.github/workflows/macos-build.yml
+  s_732803a7907060::t_65404f24d1ae42 33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "9fccc2225851763a463eeadae5c58143d8813e22",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
