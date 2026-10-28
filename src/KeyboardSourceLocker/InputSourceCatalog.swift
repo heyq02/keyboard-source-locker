@@ -8,6 +8,9 @@ public struct InputSource: Equatable, Sendable, Identifiable {
     }
 }
 
+/// Input-source access seam. Main-actor isolated because the production adapter
+/// (`TISInputSourceCatalog`) must be driven from the main thread.
+@MainActor
 public protocol InputSourceCatalog: AnyObject {
     func installedSources() -> [InputSource]
     func activeSourceID() -> InputSourceID?

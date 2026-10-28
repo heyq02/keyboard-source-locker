@@ -1,5 +1,6 @@
 import KeyboardSourceLocker
 
+@MainActor
 final class FakeInputSourceCatalog: InputSourceCatalog {
     private(set) var sources: [InputSource]
     private(set) var activeID: InputSourceID?

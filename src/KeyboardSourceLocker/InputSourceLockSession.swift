@@ -1,3 +1,6 @@
+/// App-facing wiring for the lock. Main-actor isolated: the catalog, settings store,
+/// and scheduler are all expected to be driven from the main thread.
+@MainActor
 public final class InputSourceLockSession {
     private let catalog: any InputSourceCatalog
     private let settingsStore: LockSettingsStore
@@ -39,6 +42,8 @@ public final class InputSourceLockSession {
         }
     }
 
+    /// Stops observing without touching persisted settings, so a later `start()`
+    /// resumes the user's previous lock state.
     public func stop() {
         catalog.setActiveSourceChangeHandler(nil)
         controller.setEnabled(false)
@@ -52,6 +57,8 @@ public final class InputSourceLockSession {
 
     public func setLockedTarget(_ id: InputSourceID?) {
         controller.setLockedTarget(id)
+        // Persist first so the choice survives even if the immediate select fails;
+        // the next active-source change will retry the restore.
         persist()
         if controller.isEnabled, let id {
             _ = catalog.selectSource(id: id)

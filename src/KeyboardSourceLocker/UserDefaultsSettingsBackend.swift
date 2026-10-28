@@ -15,7 +15,12 @@ public final class UserDefaultsSettingsBackend: SettingsBackend {
     }
 
     public func write(_ settings: LockSettings) {
-        guard let data = try? JSONEncoder().encode(settings) else { return }
-        defaults.set(data, forKey: key)
+        do {
+            let data = try JSONEncoder().encode(settings)
+            defaults.set(data, forKey: key)
+        } catch {
+            // Keep the previous value rather than persisting a partial state.
+            NSLog("KeyboardSourceLocker: failed to encode lock settings: \(error)")
+        }
     }
 }

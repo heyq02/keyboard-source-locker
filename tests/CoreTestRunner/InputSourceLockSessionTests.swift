@@ -1,5 +1,6 @@
 import KeyboardSourceLocker
 
+@MainActor
 enum InputSourceLockSessionTests {
     static func run() {
         print("InputSourceLockSession")
@@ -10,6 +11,7 @@ enum InputSourceLockSessionTests {
         changingTargetPersistsAndRestoresNewOne()
         startIsIdempotent()
         stopClearsHandlerAndDisables()
+        stopPreservesPersistedSettings()
         setLockedTargetWhileDisabledDoesNotSelect()
     }
 
@@ -179,6 +181,40 @@ enum InputSourceLockSessionTests {
         catalog.simulateSystemSwitch(to: InputSourceID("abc"))
         scheduler.advance(by: .milliseconds(200))
         Expect.true(catalog.selectedHistory.isEmpty, "no restores after stop")
+    }
+
+    private static func stopPreservesPersistedSettings() {
+        let backend = InMemorySettingsBackend()
+        let catalog = FakeInputSourceCatalog(
+            sources: [
+                InputSource(id: InputSourceID("abc"), displayName: "ABC"),
+                InputSource(id: InputSourceID("wechat"), displayName: "微信输入法"),
+            ],
+            activeID: InputSourceID("wechat")
+        )
+        let session = InputSourceLockSession(
+            catalog: catalog,
+            settingsStore: LockSettingsStore(backend: backend),
+            scheduler: ManualScheduler(),
+            debounceInterval: .milliseconds(200)
+        )
+        session.start()
+        session.setLockedTarget(InputSourceID("wechat"))
+        session.setEnabled(true)
+        session.stop()
+
+        let persisted = backend.read()
+        Expect.equal(persisted?.isEnabled, true, "stop keeps persisted enabled state")
+        Expect.equal(persisted?.lockedTargetID, InputSourceID("wechat"), "stop keeps persisted locked target")
+
+        let resumed = InputSourceLockSession(
+            catalog: catalog,
+            settingsStore: LockSettingsStore(backend: backend),
+            scheduler: ManualScheduler(),
+            debounceInterval: .milliseconds(200)
+        )
+        resumed.start()
+        Expect.equal(resumed.isEnabled, true, "restart resumes persisted enabled state")
     }
 
     private static func setLockedTargetWhileDisabledDoesNotSelect() {

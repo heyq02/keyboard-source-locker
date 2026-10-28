@@ -32,8 +32,10 @@ Keyboard Source Locker is a Swift Package with three products:
 
 1. **`InputSourceLockController`** — given enablement, locked target, and active-source changes, schedules debounced restores.
 2. **`LockSettingsStore`** — persists `isEnabled` + target ID; disables lock when the target is no longer installed.
-3. **`InputSourceCatalog`** — list / read active / select; production uses `TISInputSourceCatalog`.
+3. **`InputSourceCatalog`** — list / read active / select; production uses `TISInputSourceCatalog`. The protocol is `@MainActor` because TIS must be driven from the main thread; `TISInputSourceCatalog` caches its record index and rebuilds it on a cache miss.
 4. **`SelectableInputSources`** — filters keyboard + select-capable sources for the picker.
+
+`InputSourceLockSession` is `@MainActor` and owns the app-facing API. `stop()` only detaches the observer and disables the controller in memory — persisted settings are left untouched so a later `start()` resumes the user's previous lock state.
 
 ## Debounce
 

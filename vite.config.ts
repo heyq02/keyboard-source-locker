@@ -27,6 +27,5 @@ export default defineConfig({
     ignorePatterns: [".agents/**", "skills-lock.json", ".build/**", "dist/**"],
     sortImports: true,
     sortPackageJson: true,
-    sortTailwindcss: true,
   },
 });

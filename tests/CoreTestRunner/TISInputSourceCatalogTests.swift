@@ -1,6 +1,7 @@
 import Foundation
 import KeyboardSourceLocker
 
+@MainActor
 enum TISInputSourceCatalogTests {
     static func run() {
         print("TISInputSourceCatalog")
@@ -8,6 +9,7 @@ enum TISInputSourceCatalogTests {
         reportsActiveSource()
         selectUnknownSourceFails()
         selectActiveSourceSucceeds()
+        selectSourceAfterListingUsesCache()
         observingHandlerLifecycle()
     }
 
@@ -45,6 +47,17 @@ enum TISInputSourceCatalogTests {
         }
         let ok = catalog.selectSource(id: active)
         Expect.equal(ok, true, "selecting the active source succeeds")
+    }
+
+    private static func selectSourceAfterListingUsesCache() {
+        let catalog = TISInputSourceCatalog()
+        guard let first = catalog.installedSources().first else {
+            Expect.true(false, "cache path requires an installed source")
+            return
+        }
+        // Second lookup hits the cached record index built by `installedSources()`.
+        Expect.equal(catalog.selectSource(id: first.id), true, "selects a listed source via cached index")
+        Expect.equal(catalog.selectSource(id: first.id), true, "repeated select reuses cached index")
     }
 
     private static func observingHandlerLifecycle() {

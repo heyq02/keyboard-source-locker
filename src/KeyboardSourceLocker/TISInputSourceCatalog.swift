@@ -3,16 +3,25 @@ import Foundation
 
 /// Production adapter over Text Input Source (TIS) APIs.
 /// Observes input-source changes on the main queue via a selector (avoids Sendable closure captures).
+/// Main-actor isolated: TIS calls and the change handler are expected on the main thread.
+@MainActor
 public final class TISInputSourceCatalog: NSObject, InputSourceCatalog {
     private var isObserving = false
     private var handler: ((InputSourceID) -> Void)?
+    /// Cached TIS records keyed by input source ID; rebuilt on demand.
+    private var recordsByID: [InputSourceID: TISInputSource]?
 
     public override init() {
         super.init()
     }
 
     deinit {
-        stopObserving()
+        // `deinit` is nonisolated; remove the observer directly instead of calling `stopObserving()`.
+        DistributedNotificationCenter.default().removeObserver(
+            self,
+            name: kTISNotifySelectedKeyboardInputSourceChanged as NSNotification.Name,
+            object: nil
+        )
     }
 
     public func installedSources() -> [InputSource] {
@@ -45,7 +54,14 @@ public final class TISInputSourceCatalog: NSObject, InputSourceCatalog {
         guard let list = TISCreateInputSourceList(nil, false)?.takeRetainedValue() as? [TISInputSource] else {
             return []
         }
-        return list.compactMap(record(from:))
+        var index: [InputSourceID: TISInputSource] = [:]
+        let records = list.compactMap { source -> InputSourceRecord? in
+            guard let record = record(from: source) else { return nil }
+            index[record.id] = source
+            return record
+        }
+        recordsByID = index
+        return records
     }
 
     private func record(from source: TISInputSource) -> InputSourceRecord? {
@@ -99,10 +115,12 @@ public final class TISInputSourceCatalog: NSObject, InputSourceCatalog {
     }
 
     private func findSource(id: InputSourceID) -> TISInputSource? {
-        guard let list = TISCreateInputSourceList(nil, false)?.takeRetainedValue() as? [TISInputSource] else {
-            return nil
+        if let cached = recordsByID?[id] {
+            return cached
         }
-        return list.first { stringProperty($0, kTISPropertyInputSourceID) == id.rawValue }
+        // Cache miss: the installed set may have changed since the last listing.
+        _ = allRecords()
+        return recordsByID?[id]
     }
 
     private func stringProperty(_ source: TISInputSource, _ key: CFString) -> String? {
