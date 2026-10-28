@@ -1,0 +1,21 @@
+Sources/KeyboardSourceLocker/SMAppServiceLaunchAtLogin.swift
+  s_732803a7907060::t_3924a89bd4c323 26
+.github/PULL_REQUEST_TEMPLATE.md
+  s_732803a7907060::t_95a1a9204fb192 11-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "671ec24b9a4d7315fa3eaea4c5b047a4dc81b524",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
