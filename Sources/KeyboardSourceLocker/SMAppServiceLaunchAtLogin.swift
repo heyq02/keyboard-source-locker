@@ -23,7 +23,7 @@ public final class SMAppServiceLaunchAtLogin: LaunchAtLoginServing {
             case .requiresApproval:
                 hint = "Open System Settings → General → Login Items and allow Keyboard Source Locker."
             case .notFound:
-                hint = "Install KeyboardSourceLocker.app (for example via npm run package) before enabling Launch at Login."
+                hint = "Install KeyboardSourceLocker.app (for example via `vp run package`) before enabling Launch at Login."
             case .enabled, .notRegistered:
                 hint = error.localizedDescription
             @unknown default:

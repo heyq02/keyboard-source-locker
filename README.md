@@ -125,7 +125,7 @@ After each `v*` tag, the macOS zip is also published as an OCI artifact:
 
 ```bash
 # requires: https://oras.land
-oras pull ghcr.io/heyq02/keyboard-source-locker/macos:v0.0.4
+oras pull ghcr.io/heyq02/keyboard-source-locker/macos:v0.0.5
 # or
 oras pull ghcr.io/heyq02/keyboard-source-locker/macos:latest
 ```
@@ -134,9 +134,15 @@ If the package does not appear publicly, open the package on GitHub → **Packag
 
 ## Contributing
 
-Bugs, ideas, and PRs are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+Bugs, ideas, and PRs are welcome via [GitHub Issues](https://github.com/heyq02/keyboard-source-locker/issues) and pull requests. Prefer [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:`, …).
 
-Please read the [Code of Conduct](CODE_OF_CONDUCT.md) and [Security policy](SECURITY.md).
+Local check before opening a PR:
+
+```bash
+pnpm install
+vp run test
+vp run build
+```
 
 ## License
 
