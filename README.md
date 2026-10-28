@@ -51,11 +51,11 @@ First launch from the internet may require **System Settings → Privacy & Secur
 ```bash
 git clone https://github.com/heyq02/keyboard-source-locker.git
 cd keyboard-source-locker
-make package
+npm run package
 open dist/KeyboardSourceLocker.app
 ```
 
-Requirements: **macOS 14+**, Swift **6.2+** (Xcode or Command Line Tools).
+Requirements: **macOS 14+**, Swift **6.2+**, Node.js **18+**.
 
 ## Usage
 
@@ -74,19 +74,21 @@ Requirements: **macOS 14+**, Swift **6.2+** (Xcode or Command Line Tools).
 | About               | Opens the project page                               |
 | Quit                | Stop monitoring and exit                             |
 
-> **Launch at Login** works best with the packaged `.app` (for example after `make package` or a GitHub Release install). If macOS asks for approval, allow it under **System Settings → General → Login Items**.
+> **Launch at Login** works best with the packaged `.app` (for example after `npm run package` or a GitHub Release install). If macOS asks for approval, allow it under **System Settings → General → Login Items**.
 
 ## Development
 
 ```bash
-make test      # run CoreTestRunner
-make version   # print version from package.json (Swift)
-make build     # compile the app
-make run       # run from SwiftPM
-make package   # produce dist/KeyboardSourceLocker.app (reads package.json)
+npm run test      # CoreTestRunner
+npm run version   # print version from package.json (via Swift VersionTool)
+npm run build     # compile the app
+npm start         # run via SwiftPM
+npm run package   # dist/KeyboardSourceLocker.app (Swift reads package.json)
+npm run check     # debug compile smoke check
+npm run clean     # remove .build and dist
 ```
 
-Version lives in **`package.json`**. Packaging and the menu both resolve it via Swift (`VersionTool` / `AppVersion`). With Node installed you can bump + tag with:
+Version lives in **`package.json`**. Packaging scripts are Node ESM under `scripts/*.mjs`; Swift still owns compile + `VersionTool`.
 
 ```bash
 npm i

@@ -72,16 +72,21 @@ jobs:
             ${{ runner.os }}-swiftpm-release-
             ${{ runner.os }}-swiftpm-
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
       - name: Resolve packages
         run: swift package resolve
 
       - name: Run core tests
-        run: make test
+        run: npm run test
 
       - name: Verify git tag matches package.json
         run: |
           set -euo pipefail
-          PKG_VERSION="$(swift run -c release VersionTool)"
+          PKG_VERSION="$(node scripts/version.mjs)"
           TAG="${{ steps.meta.outputs.tag }}"
           if [[ "v${PKG_VERSION}" != "${TAG}" ]]; then
             echo "error: git tag ${TAG} does not match package.json version ${PKG_VERSION}" >&2
@@ -91,7 +96,7 @@ jobs:
           echo "OK: ${TAG} == package.json ${PKG_VERSION}"
 
       - name: Build and package .app
-        run: make package
+        run: npm run package
 
       - name: Zip app bundle
         run: |
@@ -99,11 +104,6 @@ jobs:
           ditto -c -k --keepParent KeyboardSourceLocker.app "${{ steps.meta.outputs.zip }}"
           shasum -a 256 "${{ steps.meta.outputs.zip }}" | tee "${{ steps.meta.outputs.zip }}.sha256"
           ls -lh "${{ steps.meta.outputs.zip }}"*
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
 
       - name: Create GitHub Release notes with changelogithub
         run: npx changelogithub@13
