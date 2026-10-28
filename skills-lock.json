@@ -409,6 +409,12 @@
       "skillPath": "pm-product-strategy/skills/value-proposition/SKILL.md",
       "computedHash": "2a2da3df17301089d6dbd9b39392c72e2723117f01291d6d28020d80a6840a5e"
     },
+    "write-swift": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/write-swift/SKILL.md",
+      "computedHash": "f20bb9cf51dbee1900b264820a12f1d3d378dc4d23ac758e7ba9e644c49a2459"
+    },
     "wwas": {
       "source": "phuryn/pm-skills",
       "sourceType": "github",
