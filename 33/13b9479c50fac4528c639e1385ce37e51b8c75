@@ -1,0 +1,21 @@
+README.md
+  s_732803a7907060::t_33750729ba6599 7,10,15-17,19,23-25,27,29
+AGENTS.md
+  s_732803a7907060::t_dab10745d6c8d7 1-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "3313b9479c50fac4528c639e1385ce37e51b8c75",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
