@@ -1,0 +1,32 @@
+.agents/skills/pm-skills/SKILL.md
+  h_a57efa94f24ca5 1-174
+.agents/skills/pm-skills/assets/expected_flow_metrics.json
+  h_a57efa94f24ca5 1-53
+.agents/skills/pm-skills/assets/sample_jira_snapshot.json
+  h_a57efa94f24ca5 1-19
+.agents/skills/pm-skills/references/agentic_delivery_governance.md
+  h_a57efa94f24ca5 1-71
+.agents/skills/pm-skills/references/flow_forecasting_canon.md
+  h_a57efa94f24ca5 1-76
+.agents/skills/pm-skills/references/pm_loop_playbook.md
+  h_a57efa94f24ca5 1-92
+.agents/skills/pm-skills/scripts/delivery_loop_gate.py
+  h_a57efa94f24ca5 1-152
+.agents/skills/pm-skills/scripts/jira_snapshot_bridge.py
+  h_a57efa94f24ca5 1-282
+.agents/skills/pm-skills/scripts/pm_goal_router.py
+  h_a57efa94f24ca5 1-179
+skills-lock.json
+  h_a57efa94f24ca5 1-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "63902699ece0dae66a0b9214b27955d1cf954000",
+  "prompts": {},
+  "humans": {
+    "h_a57efa94f24ca5": {
+      "author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
