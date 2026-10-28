@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Version source of truth is `package.json`; Swift `VersionTool` / `AppVersion` read it, and packaging stamps Info.plist from that value
+
 ## [0.0.4] - 2026-10-28
 
 ### Added

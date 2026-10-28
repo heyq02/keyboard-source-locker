@@ -20,6 +20,10 @@ let package = Package(
             name: "CoreTestRunner",
             targets: ["CoreTestRunner"]
         ),
+        .executable(
+            name: "VersionTool",
+            targets: ["VersionTool"]
+        ),
     ],
     targets: [
         .target(
@@ -31,6 +35,10 @@ let package = Package(
         ),
         .executableTarget(
             name: "KeyboardSourceLockerApp",
+            dependencies: ["KeyboardSourceLocker"]
+        ),
+        .executableTarget(
+            name: "VersionTool",
             dependencies: ["KeyboardSourceLocker"]
         ),
         // CLT-only machines lack a working XCTest/Swift Testing runner.

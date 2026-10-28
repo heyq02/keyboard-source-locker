@@ -2,6 +2,7 @@
 /.build
 /dist
 /Packages
+/node_modules
 xcuserdata/
 DerivedData/
 .swiftpm/configuration/registries.json
@@ -10,9 +11,4 @@ DerivedData/
 .netrc
 *.xcodeproj/project.xcworkspace/xcuserdata/
 *.xcuserstate
-
-node_modules
-dist
 *.log
-.DS_Store
-

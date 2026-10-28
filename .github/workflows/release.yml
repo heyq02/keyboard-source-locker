@@ -77,9 +77,19 @@ jobs:
       - name: Run core tests
         run: make test
 
+      - name: Verify git tag matches package.json
+        run: |
+          set -euo pipefail
+          PKG_VERSION="$(swift run -c release VersionTool)"
+          TAG="${{ steps.meta.outputs.tag }}"
+          if [[ "v${PKG_VERSION}" != "${TAG}" ]]; then
+            echo "error: git tag ${TAG} does not match package.json version ${PKG_VERSION}" >&2
+            echo "Bump package.json (e.g. npm run release / bumpp) before tagging." >&2
+            exit 1
+          fi
+          echo "OK: ${TAG} == package.json ${PKG_VERSION}"
+
       - name: Build and package .app
-        env:
-          VERSION: ${{ steps.meta.outputs.version }}
         run: make package
 
       - name: Zip app bundle

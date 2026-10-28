@@ -79,10 +79,18 @@ Requirements: **macOS 14+**, Swift **6.2+** (Xcode or Command Line Tools).
 ## Development
 
 ```bash
-make test      # run CoreTestRunner (26+ cases)
+make test      # run CoreTestRunner
+make version   # print version from package.json (Swift)
 make build     # compile the app
 make run       # run from SwiftPM
-make package   # produce dist/KeyboardSourceLocker.app
+make package   # produce dist/KeyboardSourceLocker.app (reads package.json)
+```
+
+Version lives in **`package.json`**. Packaging and the menu both resolve it via Swift (`VersionTool` / `AppVersion`). With Node installed you can bump + tag with:
+
+```bash
+npm i
+npm run release   # bumpp → commit, tag vX.Y.Z, push
 ```
 
 Core logic is covered by a CLT-friendly test harness (`swift run CoreTestRunner`) because Swift Testing / XCTest are unreliable under Command Line Tools alone.

@@ -1,29 +1,13 @@
 {
-    "name": "keyboard-source-locker",
-    "version": "0.0.4",
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "build": "vp pack",
-        "dev": "vp pack --watch",
-        "test": "vp test",
-        "check": "vp check",
-        "prepublishOnly": "vp run build",
-        "format": "vp fmt",
-        "lint": "vp lint",
-        "lint:fix": "vp lint --fix"
-    },
-    "devDependencies": {
-        "@types/node": "26.6.5",
-        "bumpp": "12.3.0",
-        "typescript": "7.0.2",
-        "vite-plus": "catalog:"
-    },
-    "devEngines": {
-        "packageManager": {
-            "name": "pnpm",
-            "version": "12.15.0",
-            "onFail": "download"
-        }
-    }
+  "name": "keyboard-source-locker",
+  "version": "0.0.4",
+  "private": true,
+  "description": "macOS menu-bar utility that locks the active keyboard input source",
+  "scripts": {
+    "version": "swift run -c release VersionTool",
+    "release": "bumpp --commit \"chore: release v%s\" --tag \"v%s\" --push"
+  },
+  "devDependencies": {
+    "bumpp": "^10.2.0"
+  }
 }

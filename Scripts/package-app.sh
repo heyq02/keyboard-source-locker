@@ -9,19 +9,16 @@ BUILD_DIR="${ROOT_DIR}/.build/${CONFIG}"
 DIST_DIR="${ROOT_DIR}/dist"
 APP_DIR="${DIST_DIR}/${APP_NAME}.app"
 
-# Prefer explicit VERSION, then git tag (v1.2.3 → 1.2.3), then Info.plist default.
-VERSION="${VERSION:-}"
-if [[ -z "${VERSION}" ]]; then
-  if GIT_TAG="$(git -C "${ROOT_DIR}" describe --tags --exact-match 2>/dev/null || true)"; then
-    if [[ "${GIT_TAG}" =~ ^v ]]; then
-      VERSION="${GIT_TAG#v}"
-    fi
-  fi
-fi
-VERSION="${VERSION:-1.0.0}"
-BUILD_NUMBER="${BUILD_NUMBER:-$(git -C "${ROOT_DIR}" rev-list --count HEAD 2>/dev/null || echo 1)}"
-
 cd "${ROOT_DIR}"
+
+echo "==> Reading version from package.json via Swift"
+swift build -c "${CONFIG}" --product VersionTool
+VERSION="$(swift run -c "${CONFIG}" VersionTool)"
+if [[ -z "${VERSION}" ]]; then
+  echo "error: VersionTool returned empty version" >&2
+  exit 1
+fi
+BUILD_NUMBER="${BUILD_NUMBER:-$(git -C "${ROOT_DIR}" rev-list --count HEAD 2>/dev/null || echo 1)}"
 
 echo "==> Building ${PRODUCT} (${CONFIG}) version ${VERSION} (${BUILD_NUMBER})"
 swift build -c "${CONFIG}" --product "${PRODUCT}"
@@ -39,6 +36,8 @@ mkdir -p "${APP_DIR}/Contents/Resources"
 
 cp "${BINARY}" "${APP_DIR}/Contents/MacOS/${PRODUCT}"
 cp "${ROOT_DIR}/Resources/Info.plist" "${APP_DIR}/Contents/Info.plist"
+# Ship package.json so the app can read the same version source at runtime.
+cp "${ROOT_DIR}/package.json" "${APP_DIR}/Contents/Resources/package.json"
 chmod +x "${APP_DIR}/Contents/MacOS/${PRODUCT}"
 
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${VERSION}" "${APP_DIR}/Contents/Info.plist"
@@ -48,5 +47,6 @@ if command -v codesign >/dev/null 2>&1; then
   codesign --force --deep --sign - "${APP_DIR}"
 fi
 
-echo "==> Packaged at ${APP_DIR}"
+echo "==> Packaged at ${APP_DIR} (version ${VERSION})"
 ls -la "${APP_DIR}/Contents/MacOS"
+ls -la "${APP_DIR}/Contents/Resources"
