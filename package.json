@@ -3,6 +3,16 @@
   "version": "0.0.11",
   "private": true,
   "description": "macOS menu-bar utility that locks the active keyboard input source",
+  "homepage": "https://github.com/heyq02/keyboard-source-locker",
+  "bugs": {
+    "url": "https://github.com/heyq02/keyboard-source-locker/issues"
+  },
+  "license": "MIT",
+  "author": "heyq02",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heyq02/keyboard-source-locker"
+  },
   "type": "module",
   "scripts": {
     "release": "bumpp --commit \"chore: release v%s\" --tag \"v%s\" --push",
@@ -10,6 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
+    "automd": "0.4.3",
     "bumpp": "^12.3.0",
     "changelogithub": "^15.0.5",
     "typescript": "^7.0.2",

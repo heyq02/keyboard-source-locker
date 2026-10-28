@@ -30,4 +30,21 @@ Requires **macOS 14+**.
 
 ## License
 
-[MIT](LICENSE) © Ari He
+<!-- automd:contributors provider="markupgo" author="heyq02" license="MIT" -->
+
+Published under the [MIT](https://github.com/heyq02/keyboard-source-locker/blob/main/LICENSE) license.
+Made by [@heyq02](https://github.com/heyq02) and [community](https://github.com/heyq02/keyboard-source-locker/graphs/contributors) 💛
+<br><br>
+<a href="https://github.com/heyq02/keyboard-source-locker/graphs/contributors">
+<img src="https://markupgo.com/github/heyq02/keyboard-source-locker/contributors?circleSize=64&center=true&removeLogo=true" />
+</a>
+
+<!-- /automd -->
+
+<!-- automd:with-automd -->
+
+---
+
+_🤖 auto updated with [automd](https://automd.unjs.io)_
+
+<!-- /automd -->

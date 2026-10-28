@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import { run } from './lib.mjs'
+import { run } from "./lib.mjs";
 
-run('swift', ['run', 'KeyboardSourceLockerApp'])
+run("swift", ["run", "KeyboardSourceLockerApp"]);

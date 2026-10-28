@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { configFromArgs, run } from './lib.mjs'
+import { configFromArgs, run } from "./lib.mjs";
 
-const config = configFromArgs()
-run('swift', ['run', '-c', config, 'CoreTestRunner'])
+const config = configFromArgs();
+run("swift", ["run", "-c", config, "CoreTestRunner"]);
