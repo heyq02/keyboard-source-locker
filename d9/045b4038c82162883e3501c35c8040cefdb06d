@@ -1,0 +1,63 @@
+README.md
+  s_732803a7907060::t_5d866d432fae37 3-7,9,11,13-16,18,20-25,27,29-34,36-38,41-43,47-49,51-54,56-62,64-77,81-82,89-95,97
+docs/ARCHITECTURE.md
+  s_732803a7907060::t_00cbbcf909b0dc 1-44
+.github/FUNDING.yml
+  s_732803a7907060::t_0e443936602628 1-2
+CONTRIBUTING.md
+  s_732803a7907060::t_0ba1a9ecd29af4 1-57
+.github/dependabot.yml
+  s_732803a7907060::t_67a6b703baaa7f 1-7
+.github/workflows/release.yml
+  s_732803a7907060::t_a540dded3a7ca0 73,76-78,84-85,93-99,102
+Makefile
+  s_732803a7907060::t_54418eb116c099 1-25
+.github/PULL_REQUEST_TEMPLATE.md
+  s_732803a7907060::t_ebfb8062cdd2a6 1-14
+docs/README.md
+  s_732803a7907060::t_a0d2e3c3b9b659 1-9
+Sources/KeyboardSourceLocker/KeyboardSourceLocker.swift
+  s_732803a7907060::t_5fa9d17e5aacdd 1-8
+.github/ISSUE_TEMPLATE/bug_report.yml
+  s_732803a7907060::t_d1202d224d1224 1-65
+CHANGELOG.md
+  s_732803a7907060::t_ef807816e6f7ac 1-33
+Scripts/package-app.sh
+  s_732803a7907060::t_e24ac59493004b 12-23,26,44-45
+  s_732803a7907060::t_7f40770c91acf7 46
+CODE_OF_CONDUCT.md
+  s_732803a7907060::t_76ccc42d25752d 1-59
+SECURITY.md
+  s_732803a7907060::t_b14ee59f40b960 1-28
+.editorconfig
+  s_732803a7907060::t_8e8a7a72278c6c 1-18
+Sources/KeyboardSourceLockerApp/AppDelegate.swift
+  s_732803a7907060::t_18696516182c5c 6-7,24-25,40,49,53-55,60-76,84-91,101-104,107-109,124-126
+  s_732803a7907060::t_bf1bb099bc814f 127
+.gitignore
+  s_732803a7907060::t_21d492f2d4add9 9,11-12
+.github/workflows/test.yml
+  s_732803a7907060::t_35c59ee0ba166f 45,48
+Tests/CoreTestRunner/Expect.swift
+  s_732803a7907060::t_f2a9f06a346c9d 17-30
+.github/ISSUE_TEMPLATE/feature_request.yml
+  s_732803a7907060::t_28b00164ad34db 1-29
+.github/ISSUE_TEMPLATE/config.yml
+  s_732803a7907060::t_f08d93195902ab 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "d9045b4038c82162883e3501c35c8040cefdb06d",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
