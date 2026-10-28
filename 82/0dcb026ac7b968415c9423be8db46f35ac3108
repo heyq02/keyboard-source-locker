@@ -1,0 +1,32 @@
+scripts/icon.mjs
+  s_732803a7907060::t_bc159b227bfc6c 25-26,29-41
+  s_732803a7907060::t_da84c3b237352e 1-24,27-28,42-48
+vite.config.ts
+  s_732803a7907060::t_fa0e0cafa2dfc1 13
+.gitignore
+  s_732803a7907060::t_521d0d436925ee 13-14
+  s_732803a7907060::t_3db93e2cc57d56 12
+Resources/Info.plist
+  s_732803a7907060::t_d123a2659b6655 7-8,11-12,25-26,33-34
+scripts/package.mjs
+  s_732803a7907060::t_c44e115b0a260f 39-41,49-50,53-54
+AGENTS.md
+  s_732803a7907060::t_6ca3c74220412f 33-34
+  s_732803a7907060::t_340b545446b71a 21-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "820dcb026ac7b968415c9423be8db46f35ac3108",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
