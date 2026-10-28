@@ -55,6 +55,7 @@ Task definitions live in `vite.config.ts` (`run.tasks`); do not duplicate them i
 3. Git tag must match `package.json` version
 4. Distribute only via **GitHub Releases** (no GHCR)
 5. Landing page: `.github/workflows/pages.yml` builds `site/` and deploys to GitHub Pages on pushes to `main` that touch `site/**` (or manual dispatch). Repo setting **Pages → Source** must be **GitHub Actions**.
+6. Custom domain: `site/public/CNAME` → `keyboard-source-locker.heyq02.com` (copied into `dist-site/`). DNS needs a `CNAME` record for `keyboard-source-locker` → `heyq02.github.io`.
 
 ## Conventions
 
