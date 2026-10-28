@@ -1,0 +1,45 @@
+Tests/CoreTestRunner/main.swift
+  s_732803a7907060::t_ae9b9feb2a2674 7-8
+Tests/CoreTestRunner/LaunchAtLoginTests.swift
+  s_732803a7907060::t_a95476bb491ce3 38
+  s_732803a7907060::t_3279aa0f9a90ff 1-37,39-59
+Package.swift
+  s_732803a7907060::t_b53ca74b13bb2f 29
+docs/PRD.md
+  s_732803a7907060::t_2b661037fc334b 141-142
+  s_732803a7907060::t_05dca1d14cbd98 96
+Sources/KeyboardSourceLocker/SMAppServiceLaunchAtLogin.swift
+  s_732803a7907060::t_d624d58b0c29f9 1-35
+CHANGELOG.md
+  s_732803a7907060::t_5338e3c9bf6cb6 10-14
+Sources/KeyboardSourceLocker/AppVersion.swift
+  s_732803a7907060::t_480679f4605871 3-29
+  s_732803a7907060::t_92a2bbc931b16f 1-2
+README.md
+  s_732803a7907060::t_89bc8a35d3f127 72-73,77
+  s_732803a7907060::t_cb9a52b74df8b1 78
+Sources/KeyboardSourceLocker/LaunchAtLogin.swift
+  s_732803a7907060::t_2beab923e8b83c 1-41
+Tests/CoreTestRunner/AppVersionTests.swift
+  s_732803a7907060::t_965e65fdfbfb70 1-24,26-43
+  s_732803a7907060::t_0f83ce83e5b301 25
+Sources/KeyboardSourceLockerApp/AppDelegate.swift
+  s_732803a7907060::t_2ac3f694bcbda4 10,22,86-102,143-154
+  s_732803a7907060::t_522a963f744b5f 155-157
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "73e15aceec7bd6b9da275c4bbdeec71ebddf8cc7",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
