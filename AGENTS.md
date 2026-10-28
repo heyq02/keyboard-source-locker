@@ -15,7 +15,7 @@ macOS menu-bar utility that locks the active keyboard input source (Swift Packag
 | `src/KeyboardSourceLocker`    | Core library (lock policy, settings, TIS / SMAppService adapters) |
 | `src/KeyboardSourceLockerApp` | Menu-bar AppKit entry                                             |
 | `src/VersionTool`             | Prints version from `package.json`                                |
-| `Tests/CoreTestRunner`        | CLT test harness (not XCTest / Swift Testing)                     |
+| `tests1/CoreTestRunner`        | CLT test harness (not XCTest / Swift Testing)                     |
 | `scripts/*.mjs`               | Build / package / coverage helpers                                |
 | `vite.config.ts`              | `run.tasks` for `vp run …`                                        |
 | `Resources/Info.plist`        | Packaged `.app` metadata (`LSUIElement`, icon, copyright)         |
@@ -42,7 +42,7 @@ Task definitions live in `vite.config.ts` (`run.tasks`); do not duplicate them i
 
 ## Testing
 
-- Prefer extending `Tests/CoreTestRunner` over adding XCTest — CLT environments often lack a working XCTest / Swift Testing runner.
+- Prefer extending `tests1/CoreTestRunner` over adding XCTest — CLT environments often lack a working XCTest / Swift Testing runner.
 - Production seams: `InputSourceCatalog`, `DebounceScheduler`, `SettingsBackend`, `LaunchAtLoginServing`, `SMAppServiceControlling`.
 - Coverage gate: `vp run coverage` (also used in CI Test workflow). Threshold via `COVERAGE_THRESHOLD` (default 90).
 

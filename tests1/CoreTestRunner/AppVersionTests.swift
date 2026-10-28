@@ -102,7 +102,7 @@ enum AppVersionTests {
 
     private static func findsPackageJSONFromNestedDirectory() {
         let root = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-        let nested = root.appendingPathComponent("Tests/CoreTestRunner")
+        let nested = root.appendingPathComponent("tests1/CoreTestRunner")
         let url = AppVersion.findPackageJSON(startingAt: nested)
         Expect.true(url != nil, "walks parents to find package.json")
     }

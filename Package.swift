@@ -49,7 +49,7 @@ let package = Package(
         .executableTarget(
             name: "CoreTestRunner",
             dependencies: ["KeyboardSourceLocker"],
-            path: "Tests/CoreTestRunner"
+            path: "tests1/CoreTestRunner"
         ),
     ],
     swiftLanguageModes: [.v6]
