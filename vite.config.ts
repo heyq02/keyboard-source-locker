@@ -14,17 +14,18 @@ export default defineConfig({
       clean: "node scripts/clean.mjs",
       check: "node scripts/check.mjs",
       coverage: "node scripts/coverage.mjs",
+      site: "node scripts/site.mjs",
     },
   },
   lint: {
-    ignorePatterns: [".agents/**", "skills-lock.json", ".build/**", "dist/**"],
+    ignorePatterns: [".agents/**", "skills-lock.json", ".build/**", "dist/**", "dist-site/**"],
     options: {
       typeAware: true,
       typeCheck: true,
     },
   },
   fmt: {
-    ignorePatterns: [".agents/**", "skills-lock.json", ".build/**", "dist/**"],
+    ignorePatterns: [".agents/**", "skills-lock.json", ".build/**", "dist/**", "dist-site/**"],
     sortImports: true,
     sortPackageJson: true,
   },

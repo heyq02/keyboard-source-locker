@@ -20,6 +20,7 @@ macOS menu-bar utility that locks the active keyboard input source (Swift Packag
 | `vite.config.ts`              | `run.tasks` for `vp run …`                                        |
 | `static/Info.plist`           | Packaged `.app` metadata (`LSUIElement`, icon, copyright)         |
 | `images/app-icon.jpg`         | Source art for `vp run icon` → `static/AppIcon.icns`              |
+| `site/`                       | Static landing page (Vite root) → `dist-site/` for GitHub Pages   |
 
 Target `path`s are explicit under `src/` in `Package.swift`.
 
@@ -34,6 +35,7 @@ vp run package    # dist/KeyboardSourceLocker.app (rebuilds AppIcon.icns)
 vp run icon       # rebuild static/AppIcon.icns from images/app-icon.jpg
 vp run version    # print package.json version via VersionTool
 vp run check      # debug smoke build of products
+vp run site       # build site/ → dist-site/ (GitHub Pages artifact)
 vp run clean
 pnpm run release  # bumpp → commit, tag vX.Y.Z, push (triggers Release workflow)
 ```
@@ -52,6 +54,7 @@ Task definitions live in `vite.config.ts` (`run.tasks`); do not duplicate them i
 2. Tag push runs `.github/workflows/release.yml`: test → package → changelogithub → upload Release assets
 3. Git tag must match `package.json` version
 4. Distribute only via **GitHub Releases** (no GHCR)
+5. Landing page: `.github/workflows/pages.yml` builds `site/` and deploys to GitHub Pages on pushes to `main` that touch `site/**` (or manual dispatch). Repo setting **Pages → Source** must be **GitHub Actions**.
 
 ## Conventions
 

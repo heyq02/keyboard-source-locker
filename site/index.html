@@ -1,11 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyboard Source Locker — lock your macOS input source</title>
+    <meta
+      name="description"
+      content="A tiny macOS menu-bar app that keeps your keyboard input source locked to the one you pick."
+    />
+    <meta name="theme-color" content="#0b0d12" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Keyboard Source Locker" />
+    <meta
+      property="og:description"
+      content="A tiny macOS menu-bar app that keeps your keyboard input source locked to the one you pick."
+    />
+    <meta property="og:image" content="./hero-banner.jpg" />
+    <link rel="icon" type="image/jpeg" href="./app-icon.jpg" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="./">
+        <img src="./app-icon.jpg" alt="" width="28" height="28" />
+        <span>Keyboard Source Locker</span>
+      </a>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/heyq02/keyboard-source-locker">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">macOS 14+ · Menu bar · MIT</p>
+        <h1>Stop fighting the input source switcher.</h1>
+        <p class="lede">
+          macOS won't let you remove <strong>ABC</strong>, so it can switch on you at the worst
+          moment. Keyboard Source Locker snaps the active input source back to the one you chose —
+          after a short 200&nbsp;ms debounce.
+        </p>
+        <div class="actions">
+          <a
+            class="button primary"
+            href="https://github.com/heyq02/keyboard-source-locker/releases/latest"
+            >Download for macOS</a
+          >
+          <a class="button" href="https://github.com/heyq02/keyboard-source-locker">View source</a>
+        </div>
+        <img
+          class="shot"
+          src="./hero-banner.jpg"
+          alt="Keyboard Source Locker menu-bar app"
+          width="800"
+          height="450"
+        />
+      </section>
+
+      <section id="features" class="features">
+        <article>
+          <h2>Lock any input source</h2>
+          <p>Pick a target from the menu bar — for example 微信输入法 — and turn the lock on.</p>
+        </article>
+        <article>
+          <h2>200 ms debounce</h2>
+          <p>Rapid switches cancel each other, so only the settled source triggers a restore.</p>
+        </article>
+        <article>
+          <h2>Menu bar only</h2>
+          <p>No Dock icon, no windows. Launch at login is one click away.</p>
+        </article>
+      </section>
+
+      <section id="install" class="install">
+        <div>
+          <h2>Install</h2>
+          <ol>
+            <li>
+              Download the latest
+              <a href="https://github.com/heyq02/keyboard-source-locker/releases/latest">Release</a>
+              zip.
+            </li>
+            <li>
+              Unzip and move <code>KeyboardSourceLocker.app</code> to <code>/Applications</code>.
+            </li>
+            <li>Launch it — look for the lock icon in the menu bar.</li>
+          </ol>
+          <p class="note">
+            First launch may need
+            <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>.
+          </p>
+        </div>
+        <img
+          class="shot small"
+          src="./menu-preview.jpg"
+          alt="Menu bar menu preview"
+          width="400"
+          height="300"
+        />
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year">2026</span> Ari He · MIT License</span>
+      <span class="version">v<span id="version">0.0.0</span></span>
+    </footer>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
 </html>
