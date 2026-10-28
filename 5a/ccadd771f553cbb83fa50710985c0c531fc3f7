@@ -1,0 +1,158 @@
+.agents/skills/ab-test-analysis/SKILL.md
+  h_a57efa94f24ca5 1-82
+.agents/skills/analyze-feature-requests/SKILL.md
+  h_a57efa94f24ca5 1-49
+.agents/skills/ansoff-matrix/SKILL.md
+  h_a57efa94f24ca5 1-166
+.agents/skills/beachhead-segment/SKILL.md
+  h_a57efa94f24ca5 1-145
+.agents/skills/brainstorm-experiments-existing/SKILL.md
+  h_a57efa94f24ca5 1-51
+.agents/skills/brainstorm-experiments-new/SKILL.md
+  h_a57efa94f24ca5 1-45
+.agents/skills/brainstorm-ideas-existing/SKILL.md
+  h_a57efa94f24ca5 1-54
+.agents/skills/brainstorm-ideas-new/SKILL.md
+  h_a57efa94f24ca5 1-46
+.agents/skills/brainstorm-okrs/SKILL.md
+  h_a57efa94f24ca5 1-80
+.agents/skills/business-model/SKILL.md
+  h_a57efa94f24ca5 1-133
+.agents/skills/code-review/SKILL.md
+  h_a57efa94f24ca5 1-253
+.agents/skills/code-review/references/correctness-taxonomy.md
+  h_a57efa94f24ca5 1-144
+.agents/skills/code-review/references/performance-review.md
+  h_a57efa94f24ca5 1-55
+.agents/skills/code-review/references/security-review.md
+  h_a57efa94f24ca5 1-68
+.agents/skills/cohort-analysis/SKILL.md
+  h_a57efa94f24ca5 1-114
+.agents/skills/competitive-battlecard/SKILL.md
+  h_a57efa94f24ca5 1-77
+.agents/skills/competitor-analysis/SKILL.md
+  h_a57efa94f24ca5 1-110
+.agents/skills/create-prd/SKILL.md
+  h_a57efa94f24ca5 1-97
+.agents/skills/customer-journey-map/SKILL.md
+  h_a57efa94f24ca5 1-65
+.agents/skills/draft-nda/SKILL.md
+  h_a57efa94f24ca5 1-160
+.agents/skills/dummy-dataset/SKILL.md
+  h_a57efa94f24ca5 1-114
+.agents/skills/grammar-check/SKILL.md
+  h_a57efa94f24ca5 1-209
+.agents/skills/growth-loops/SKILL.md
+  h_a57efa94f24ca5 1-125
+.agents/skills/gtm-motions/SKILL.md
+  h_a57efa94f24ca5 1-155
+.agents/skills/gtm-strategy/SKILL.md
+  h_a57efa94f24ca5 1-94
+.agents/skills/ideal-customer-profile/SKILL.md
+  h_a57efa94f24ca5 1-164
+.agents/skills/identify-assumptions-existing/SKILL.md
+  h_a57efa94f24ca5 1-44
+.agents/skills/identify-assumptions-new/SKILL.md
+  h_a57efa94f24ca5 1-52
+.agents/skills/intended-vs-implemented/SKILL.md
+  h_a57efa94f24ca5 1-42
+.agents/skills/interview-script/SKILL.md
+  h_a57efa94f24ca5 1-105
+.agents/skills/job-stories/SKILL.md
+  h_a57efa94f24ca5 1-74
+.agents/skills/lean-canvas/SKILL.md
+  h_a57efa94f24ca5 1-121
+.agents/skills/market-segments/SKILL.md
+  h_a57efa94f24ca5 1-80
+.agents/skills/market-sizing/SKILL.md
+  h_a57efa94f24ca5 1-90
+.agents/skills/marketing-ideas/SKILL.md
+  h_a57efa94f24ca5 1-44
+.agents/skills/metrics-dashboard/SKILL.md
+  h_a57efa94f24ca5 1-94
+.agents/skills/monetization-strategy/SKILL.md
+  h_a57efa94f24ca5 1-150
+.agents/skills/north-star-metric/SKILL.md
+  h_a57efa94f24ca5 1-74
+.agents/skills/opportunity-solution-tree/SKILL.md
+  h_a57efa94f24ca5 1-64
+.agents/skills/outcome-roadmap/SKILL.md
+  h_a57efa94f24ca5 1-68
+.agents/skills/pestle-analysis/SKILL.md
+  h_a57efa94f24ca5 1-124
+.agents/skills/porters-five-forces/SKILL.md
+  h_a57efa94f24ca5 1-212
+.agents/skills/positioning-ideas/SKILL.md
+  h_a57efa94f24ca5 1-61
+.agents/skills/pre-mortem/SKILL.md
+  h_a57efa94f24ca5 1-93
+.agents/skills/pricing-strategy/SKILL.md
+  h_a57efa94f24ca5 1-85
+.agents/skills/prioritization-frameworks/SKILL.md
+  h_a57efa94f24ca5 1-75
+.agents/skills/prioritize-assumptions/SKILL.md
+  h_a57efa94f24ca5 1-48
+.agents/skills/prioritize-features/SKILL.md
+  h_a57efa94f24ca5 1-52
+.agents/skills/privacy-policy/SKILL.md
+  h_a57efa94f24ca5 1-238
+.agents/skills/product-name/SKILL.md
+  h_a57efa94f24ca5 1-47
+.agents/skills/product-strategy/SKILL.md
+  h_a57efa94f24ca5 1-111
+.agents/skills/product-vision/SKILL.md
+  h_a57efa94f24ca5 1-52
+.agents/skills/release-notes/SKILL.md
+  h_a57efa94f24ca5 1-63
+.agents/skills/retro/SKILL.md
+  h_a57efa94f24ca5 1-76
+.agents/skills/review-resume/SKILL.md
+  h_a57efa94f24ca5 1-221
+.agents/skills/sentiment-analysis/SKILL.md
+  h_a57efa94f24ca5 1-83
+.agents/skills/shipping-artifacts/SKILL.md
+  h_a57efa94f24ca5 1-98
+.agents/skills/sprint-plan/SKILL.md
+  h_a57efa94f24ca5 1-67
+.agents/skills/sql-queries/SKILL.md
+  h_a57efa94f24ca5 1-87
+.agents/skills/stakeholder-map/SKILL.md
+  h_a57efa94f24ca5 1-51
+.agents/skills/startup-canvas/SKILL.md
+  h_a57efa94f24ca5 1-138
+.agents/skills/strategy-red-team/SKILL.md
+  h_a57efa94f24ca5 1-72
+.agents/skills/summarize-interview/SKILL.md
+  h_a57efa94f24ca5 1-53
+.agents/skills/summarize-meeting/SKILL.md
+  h_a57efa94f24ca5 1-81
+.agents/skills/swot-analysis/SKILL.md
+  h_a57efa94f24ca5 1-96
+.agents/skills/test-scenarios/SKILL.md
+  h_a57efa94f24ca5 1-86
+.agents/skills/user-personas/SKILL.md
+  h_a57efa94f24ca5 1-69
+.agents/skills/user-segmentation/SKILL.md
+  h_a57efa94f24ca5 1-88
+.agents/skills/user-stories/SKILL.md
+  h_a57efa94f24ca5 1-74
+.agents/skills/value-prop-statements/SKILL.md
+  h_a57efa94f24ca5 1-51
+.agents/skills/value-proposition/SKILL.md
+  h_a57efa94f24ca5 1-108
+.agents/skills/wwas/SKILL.md
+  h_a57efa94f24ca5 1-69
+skills-lock.json
+  h_a57efa94f24ca5 1-419
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "5accadd771f553cbb83fa50710985c0c531fc3f7",
+  "prompts": {},
+  "humans": {
+    "h_a57efa94f24ca5": {
+      "author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
