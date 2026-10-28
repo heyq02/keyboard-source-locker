@@ -1,0 +1,26 @@
+docs/DEMAND.md
+  s_732803a7907060::t_efbef16927542d 5,10,14,22,32,34,38,41-42
+  s_732803a7907060::t_20b5c2ac26216a 40
+  s_732803a7907060::t_91c6dde4097728 43
+  s_732803a7907060::t_0291046dcd0e79 18
+  s_732803a7907060::t_f8a3de5f0ac364 25
+  s_732803a7907060::t_9553f07d1c0faf 23-24,26,28,33,39
+  s_732803a7907060::t_21965d6b696383 27
+  s_732803a7907060::t_48438f3a02df34 3,7-8,12,16-17,19-21,29-31,35-37,44-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "8eaaacf707897ed97e0f3dbd58056a2d92c22f9b",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
