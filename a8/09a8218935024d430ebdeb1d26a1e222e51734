@@ -1,0 +1,58 @@
+Tests/CoreTestRunner/TISInputSourceCatalogTests.swift
+  s_732803a7907060::t_196c2b36b24249 1-85
+Tests/CoreTestRunner/DispatchQueueDebounceSchedulerTests.swift
+  s_732803a7907060::t_dcc7a9b190c748 1-61
+Tests/CoreTestRunner/InputSourceLockSessionTests.swift
+  s_732803a7907060::t_b6a17012d72609 139-199,201-205
+  s_732803a7907060::t_6f9df2064e6d9a 200
+  s_732803a7907060::t_901e7c2973a261 11-13
+README.md
+  s_732803a7907060::t_453c9659dc7ec3 92
+.github/workflows/test.yml
+  s_732803a7907060::t_f919d3b43ff4d8 58-59
+scripts/coverage.mjs
+  s_732803a7907060::t_222e1cc3226e0d 77-80
+  s_732803a7907060::t_3855d1c13a4395 1-76,81-94
+src/KeyboardSourceLocker/SMAppServiceLaunchAtLogin.swift
+  s_732803a7907060::t_11244efd6c5e84 45-46,48-69
+  s_732803a7907060::t_e70597285e9884 4-24,27-31,34,40,42,47
+Tests/CoreTestRunner/FakeInputSourceCatalog.swift
+  s_732803a7907060::t_05a426479361f2 35-38
+  s_732803a7907060::t_6f34a272b92a5c 7-8,27
+Tests/CoreTestRunner/SMAppServiceLaunchAtLoginTests.swift
+  s_732803a7907060::t_89211e160cea03 106-109
+  s_732803a7907060::t_a6fb2a27827e3f 1-8,15-39,71-72,76-77,79,85-87,89,93-94,96,98,136,139,148-149
+  s_732803a7907060::t_3fb94a7d53b222 9-14,40-70,73-75,78,80-84,88,90-92,95,97,99-105,110-135,137-138,140-147
+vite.config.ts
+  s_732803a7907060::t_3ad8a650948bc3 15
+Tests/CoreTestRunner/UserDefaultsSettingsBackendTests.swift
+  s_732803a7907060::t_9c0d45990593c8 1-50
+Tests/CoreTestRunner/LaunchAtLoginTests.swift
+  s_732803a7907060::t_0adff51108c3f2 10-11
+  s_732803a7907060::t_7fe2a36ea8656e 1
+  s_732803a7907060::t_23f9caa01e9277 43-59,65,68,71,76-80
+.gitignore
+  s_732803a7907060::t_6556a9e74a31e8 8-12
+Tests/CoreTestRunner/main.swift
+  s_732803a7907060::t_9e09df0f135006 9-12
+src/KeyboardSourceLocker/DispatchQueueDebounceScheduler.swift
+  s_732803a7907060::t_fa1e9242a54519 24
+Tests/CoreTestRunner/AppVersionTests.swift
+  s_732803a7907060::t_d08d88d8b4a287 11-12,15,18-22,60-72,83-87,102-149,151-152
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "a809a8218935024d430ebdeb1d26a1e222e51734",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
