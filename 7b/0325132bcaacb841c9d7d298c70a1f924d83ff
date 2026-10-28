@@ -1,0 +1,27 @@
+README.md
+  s_732803a7907060::t_6b57c32f904baa 24-30,38-46
+.github/workflows/macos-build.yml
+  s_732803a7907060::t_97b2304767b731 1-65
+Scripts/package-app.sh
+  s_732803a7907060::t_9ecc102dc093b0 1-38
+.gitignore
+  s_732803a7907060::t_4af4d80121e9b4 3,10
+Resources/Info.plist
+  s_732803a7907060::t_4e9e1d67daca0c 1-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "7b0325132bcaacb841c9d7d298c70a1f924d83ff",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
