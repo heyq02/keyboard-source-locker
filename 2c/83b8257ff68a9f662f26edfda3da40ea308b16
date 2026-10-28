@@ -1,0 +1,16 @@
+pnpm-lock.yaml
+  h_a57efa94f24ca5 159-2141
+vite.config.ts
+  h_a57efa94f24ca5 20-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "2c83b8257ff68a9f662f26edfda3da40ea308b16",
+  "prompts": {},
+  "humans": {
+    "h_a57efa94f24ca5": {
+      "author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
