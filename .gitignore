@@ -10,3 +10,5 @@ DerivedData/
 .netrc
 *.xcodeproj/project.xcworkspace/xcuserdata/
 *.xcuserstate
+
+node_modules/
