@@ -1,0 +1,78 @@
+Sources/KeyboardSourceLockerApp/main.swift
+  s_732803a7907060::t_9700c1708a5b88 1-3,6
+  s_732803a7907060::t_a4ab0628e04b2d 7-9
+  s_732803a7907060::t_32b40cd642bd4a 4-5
+Sources/KeyboardSourceLocker/KeyboardSourceLocker.swift
+  s_732803a7907060::t_2ebddcdabe82a0 1
+Tests/CoreTestRunner/Expect.swift
+  s_732803a7907060::t_72664f6da2e3a0 1-25
+Sources/KeyboardSourceLocker/TISInputSourceCatalog.swift
+  s_732803a7907060::t_69e41f02599bf4 5-7,10-12,15,37-40,73,75-98
+  s_732803a7907060::t_af688bc9fae980 19,41-71,112-117
+  s_732803a7907060::t_54f65fdb6b5fbe 1-4,8-9,13-14,16-18,20-36,72,74,99-111,118-119
+Tests/CoreTestRunner/ManualScheduler.swift
+  s_732803a7907060::t_154fa824151e2e 1-32
+Tests/CoreTestRunner/FakeInputSourceCatalog.swift
+  s_732803a7907060::t_fd3499a41c82c7 1-33
+Tests/CoreTestRunner/SelectableInputSourcesTests.swift
+  s_732803a7907060::t_8b3d6d7791dee9 1-83
+Tests/CoreTestRunner/main.swift
+  s_732803a7907060::t_8170b00fe13bbf 1-3,7
+  s_732803a7907060::t_00213d94bd3c9c 4
+  s_732803a7907060::t_67870174c235b4 5
+  s_732803a7907060::t_40d050b3c670cb 6
+Tests/CoreTestRunner/InputSourceLockSessionTests.swift
+  s_732803a7907060::t_47cbb40f19d58c 1-132,135-136
+  s_732803a7907060::t_94c7b375753054 133-134
+Sources/KeyboardSourceLocker/UserDefaultsSettingsBackend.swift
+  s_732803a7907060::t_7905b85d92e3ad 1-21
+Sources/KeyboardSourceLocker/InputSourceID.swift
+  s_732803a7907060::t_543f0a7260923a 1-7
+Sources/KeyboardSourceLocker/DispatchQueueDebounceScheduler.swift
+  s_732803a7907060::t_f381c7afa2731d 1-29
+README.md
+  s_732803a7907060::t_b634ec418a5316 1-30
+Sources/KeyboardSourceLocker/DebounceScheduler.swift
+  s_732803a7907060::t_2f28c442401183 1-7
+Tests/CoreTestRunner/LockSettingsStoreTests.swift
+  s_732803a7907060::t_e685b7fa9097a6 1-43
+Sources/KeyboardSourceLocker/InputSourceLockSession.swift
+  s_732803a7907060::t_c0b277c1680063 1-69
+Package.swift
+  s_732803a7907060::t_19b91b6f6e1b79 26-29
+  s_732803a7907060::t_f8c5d75aca1410 1-6,10-13,18,23-25,30,41-44
+  s_732803a7907060::t_cd411c2919e0fd 19-22,35-38,40
+  s_732803a7907060::t_3e1aa44606df51 39
+  s_732803a7907060::t_307a0420718269 7-9,14-17,31-34
+Tests/CoreTestRunner/InputSourceLockControllerTests.swift
+  s_732803a7907060::t_3789a1b64288ee 1-137
+.gitignore
+  s_732803a7907060::t_f8c5d75aca1410 1-8
+Sources/KeyboardSourceLocker/LockSettings.swift
+  s_732803a7907060::t_31e3fb0cf0e3a5 1-53
+Sources/KeyboardSourceLocker/InputSourceCatalog.swift
+  s_732803a7907060::t_2f03f48c5f5abf 1-17
+Sources/KeyboardSourceLockerApp/AppDelegate.swift
+  s_732803a7907060::t_0859ae1dee3d15 1-106
+Sources/KeyboardSourceLocker/SelectableInputSources.swift
+  s_732803a7907060::t_a6972000d95cff 1-37
+Sources/KeyboardSourceLocker/InputSourceLockController.swift
+  s_732803a7907060::t_66c8b205d39dbb 1-43,46-53
+  s_732803a7907060::t_7f61a1ebf9fe2c 44-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "a9ac5dc1aff42fa21f340d5717d292d7af8d0941",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
