@@ -1,0 +1,28 @@
+docs/ARCHITECTURE.md
+  s_732803a7907060::t_bc93da3d50f7cc 44
+scripts/icon.mjs
+  s_732803a7907060::t_811a13aea98a75 3,11-14
+AGENTS.md
+  s_732803a7907060::t_a33c9a3565df08 34
+  s_732803a7907060::t_d81858bfcbd479 21-22
+.gitignore
+  s_732803a7907060::t_03eeef49347b15 12-14
+scripts/package.mjs
+  s_732803a7907060::t_536642ff27f81d 51,53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "a03e40d1be7d9430841752fc940e1eb9d415e7da",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
