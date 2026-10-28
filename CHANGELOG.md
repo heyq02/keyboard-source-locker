@@ -14,7 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Version source of truth is `package.json`; Swift `VersionTool` / `AppVersion` read it, and packaging stamps Info.plist from that value
-- Replaced `Makefile` / shell packaging with Node ESM scripts under `scripts/*.mjs` (`npm run test|build|package|…`)
+- Replaced `Makefile` / shell packaging with Node ESM scripts under `scripts/*.mjs`, orchestrated by **Vite+** (`vp run …` via `vite.config.ts` `run.tasks`)
+
 
 ## [0.0.4] - 2026-10-28
 

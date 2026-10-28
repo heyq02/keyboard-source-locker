@@ -41,4 +41,4 @@ Default interval is **200 ms**. Rapid successive switches cancel the previous 
 
 ## Packaging
 
-`scripts/package.mjs` builds a release binary into `dist/KeyboardSourceLocker.app` with `Resources/Info.plist` (`LSUIElement` = menu-bar only) and ad-hoc codesign. Version comes from `package.json` via Swift `VersionTool`.
+`vp run package` → `scripts/package.mjs` builds a release binary into `dist/KeyboardSourceLocker.app` with `Resources/Info.plist` (`LSUIElement` = menu-bar only) and ad-hoc codesign. Version comes from `package.json` via Swift `VersionTool`. Node orchestration uses [Vite+](https://viteplus.dev) (`vite.config.ts` `run.tasks`).

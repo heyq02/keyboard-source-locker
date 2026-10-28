@@ -1,27 +1,28 @@
 import { defineConfig } from "vite-plus";
 
 export default defineConfig({
-    pack: {
-        deps: {
-            // tsdown <0.23 compatibility: resolve external dependency subpaths.
-            // Remove to preserve subpath imports as written (the new default).
-            // https://tsdown.dev/options/dependencies#deps-resolvedepsubpath
-            resolveDepSubpath: true,
+    run: {
+        // Swift builds are side-effectful; never replay from cache.
+        cache: { scripts: false, tasks: false },
+        tasks: {
+            version: "node scripts/version.mjs",
+            test: "node scripts/test.mjs",
+            build: "node scripts/build.mjs",
+            start: "node scripts/run-app.mjs",
+            package: "node scripts/package.mjs",
+            clean: "node scripts/clean.mjs",
+            check: "node scripts/check.mjs",
         },
-        dts: {
-            generator: "tsgo",
-        },
-        exports: true,
     },
     lint: {
-        ignorePatterns: [".agents/**", "skills-lock.json"],
+        ignorePatterns: [".agents/**", "skills-lock.json", ".build/**", "dist/**"],
         options: {
             typeAware: true,
             typeCheck: true,
         },
     },
     fmt: {
-        ignorePatterns: [".agents/**", "skills-lock.json"],
+        ignorePatterns: [".agents/**", "skills-lock.json", ".build/**", "dist/**"],
         sortImports: true,
         sortPackageJson: true,
         sortTailwindcss: true,

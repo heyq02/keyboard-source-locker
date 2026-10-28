@@ -72,16 +72,23 @@ jobs:
             ${{ runner.os }}-swiftpm-release-
             ${{ runner.os }}-swiftpm-
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
+          cache: pnpm
+
+      - name: Install Node deps
+        run: pnpm install --frozen-lockfile
 
       - name: Resolve packages
         run: swift package resolve
 
       - name: Run core tests
-        run: npm run test
+        run: pnpm exec vp run test
 
       - name: Verify git tag matches package.json
         run: |
@@ -90,13 +97,13 @@ jobs:
           TAG="${{ steps.meta.outputs.tag }}"
           if [[ "v${PKG_VERSION}" != "${TAG}" ]]; then
             echo "error: git tag ${TAG} does not match package.json version ${PKG_VERSION}" >&2
-            echo "Bump package.json (e.g. npm run release / bumpp) before tagging." >&2
+            echo "Bump package.json (e.g. pnpm run release / bumpp) before tagging." >&2
             exit 1
           fi
           echo "OK: ${TAG} == package.json ${PKG_VERSION}"
 
       - name: Build and package .app
-        run: npm run package
+        run: pnpm exec vp run package
 
       - name: Zip app bundle
         run: |
@@ -106,7 +113,7 @@ jobs:
           ls -lh "${{ steps.meta.outputs.zip }}"*
 
       - name: Create GitHub Release notes with changelogithub
-        run: npx changelogithub@13
+        run: pnpm exec changelogithub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

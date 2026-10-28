@@ -2,21 +2,18 @@
   "name": "keyboard-source-locker",
   "version": "0.0.4",
   "private": true,
-  "type": "module",
   "description": "macOS menu-bar utility that locks the active keyboard input source",
+  "type": "module",
   "scripts": {
-    "version": "node scripts/version.mjs",
-    "test": "node scripts/test.mjs",
-    "build": "node scripts/build.mjs",
-    "start": "node scripts/run-app.mjs",
-    "package": "node scripts/package.mjs",
-    "clean": "node scripts/clean.mjs",
-    "check": "node scripts/check.mjs",
     "release": "bumpp --commit \"chore: release v%s\" --tag \"v%s\" --push",
     "changelog": "changelogithub"
   },
   "devDependencies": {
-    "bumpp": "^10.2.0",
-    "changelogithub": "^13.0.0"
-  }
+    "@types/node": "^26.6.5",
+    "bumpp": "^12.3.0",
+    "changelogithub": "^13.0.0",
+    "typescript": "^7.0.2",
+    "vite-plus": "catalog:"
+  },
+  "packageManager": "pnpm@12.15.0"
 }

@@ -19,10 +19,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
+          cache: pnpm
 
       - name: Select latest Xcode
         run: |
@@ -34,6 +38,7 @@ jobs:
           xcodebuild -version
           swift --version
           node --version
+          pnpm --version
 
       - name: Cache SwiftPM
         uses: actions/cache@v6
@@ -44,11 +49,14 @@ jobs:
             ${{ runner.os }}-swiftpm-test-
             ${{ runner.os }}-swiftpm-
 
+      - name: Install Node deps
+        run: pnpm install --frozen-lockfile
+
       - name: Resolve packages
         run: swift package resolve
 
       - name: Run core tests
-        run: npm run test
+        run: pnpm exec vp run test
 
       - name: Build app (compile check)
-        run: npm run build
+        run: pnpm exec vp run build
