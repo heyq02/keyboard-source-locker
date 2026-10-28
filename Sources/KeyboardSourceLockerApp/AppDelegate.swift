@@ -7,6 +7,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var statusItem: NSStatusItem?
     private var session: InputSourceLockSession!
+    private var launchAtLogin: LaunchAtLoginController!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         let catalog = TISInputSourceCatalog()
@@ -18,6 +19,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             debounceInterval: .milliseconds(200)
         )
         session.start()
+        launchAtLogin = LaunchAtLoginController(service: SMAppServiceLaunchAtLogin())
 
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem = item
@@ -81,6 +83,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         menu.addItem(.separator())
 
+        let launchItem = NSMenuItem(
+            title: "Launch at Login",
+            action: #selector(toggleLaunchAtLogin),
+            keyEquivalent: ""
+        )
+        launchItem.state = launchAtLogin.isEnabled ? .on : .off
+        launchItem.target = self
+        menu.addItem(launchItem)
+
+        let versionItem = NSMenuItem(
+            title: AppVersion.currentMenuTitle(),
+            action: nil,
+            keyEquivalent: ""
+        )
+        versionItem.isEnabled = false
+        menu.addItem(versionItem)
+
         let about = NSMenuItem(
             title: "About Keyboard Source Locker",
             action: #selector(openAbout),
@@ -118,6 +137,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func selectTarget(_ sender: NSMenuItem) {
         guard let raw = sender.representedObject as? String else { return }
         session.setLockedTarget(InputSourceID(raw))
+        rebuildMenu()
+    }
+
+    @objc private func toggleLaunchAtLogin() {
+        let desired = !launchAtLogin.isEnabled
+        if !launchAtLogin.setEnabled(desired) {
+            let message = launchAtLogin.lastErrorDescription
+                ?? "Could not update Launch at Login."
+            let alert = NSAlert()
+            alert.messageText = "Launch at Login"
+            alert.informativeText = message
+            alert.alertStyle = .warning
+            alert.addButton(withTitle: "OK")
+            alert.runModal()
+        }
         rebuildMenu()
     }
 

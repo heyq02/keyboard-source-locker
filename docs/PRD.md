@@ -93,7 +93,7 @@ The app runs as a menu-bar–first utility (no required main window for v1).
 | Pick target | Choose any currently installed input source |
 | Quit | Exit the app and stop all restore behavior |
 
-Optional for v1 (nice-to-have, not required): About, Launch at Login, open System Settings → Keyboard.
+Optional / shipped: About, version display, Launch at Login. Still optional: open System Settings → Keyboard.
 
 ### 5.2 Locking behavior
 
@@ -138,7 +138,8 @@ If the previously locked target is no longer installed, disable lock (or prompt 
 | FR-7 | Quit stops monitoring and restoring | P0 |
 | FR-8 | Persist lock state + target across launches | P0 |
 | FR-9 | Handle missing locked target after uninstall/removal of that source | P1 |
-| FR-10 | Launch at Login | P2 |
+| FR-10 | Launch at Login | P0 (shipped) |
+| FR-11 | Show current app version in the menu | P0 (shipped) |
 
 ---
 

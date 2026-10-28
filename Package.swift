@@ -26,6 +26,7 @@ let package = Package(
             name: "KeyboardSourceLocker",
             linkerSettings: [
                 .linkedFramework("Carbon"),
+                .linkedFramework("ServiceManagement"),
             ]
         ),
         .executableTarget(

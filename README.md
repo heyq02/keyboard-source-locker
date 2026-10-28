@@ -69,8 +69,12 @@ Requirements: **macOS 14+**, Swift **6.2+** (Xcode or Command Line Tools).
 | Lock: On / Off | Enable or disable restoring |
 | Locked to: … | Shows the current locked target |
 | Select Input Source | Choose the locked target |
+| Launch at Login | Start the app automatically when you log in to macOS |
+| Version … | Shows the current app version |
 | About | Opens the project page |
 | Quit | Stop monitoring and exit |
+
+> **Launch at Login** works best with the packaged `.app` (for example after `make package` or a GitHub Release install). If macOS asks for approval, allow it under **System Settings → General → Login Items**.
 
 ## Development
 
