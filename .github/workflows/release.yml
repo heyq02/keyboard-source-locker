@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  packages: write
 
 concurrency:
   group: release-${{ github.workflow }}-${{ github.ref }}
@@ -20,7 +21,7 @@ concurrency:
 
 jobs:
   release:
-    name: Build and publish GitHub Release
+    name: Build, release, and publish package
     runs-on: macos-15
     timeout-minutes: 30
 
@@ -43,9 +44,13 @@ jobs:
             exit 1
           fi
           VERSION="${TAG#v}"
+          OWNER_LC="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
+          REPO_LC="$(echo '${{ github.event.repository.name }}' | tr '[:upper:]' '[:lower:]')"
+          PACKAGE="ghcr.io/${OWNER_LC}/${REPO_LC}/macos"
           echo "tag=${TAG}" >> "${GITHUB_OUTPUT}"
           echo "version=${VERSION}" >> "${GITHUB_OUTPUT}"
           echo "zip=KeyboardSourceLocker-${TAG}-macos.zip" >> "${GITHUB_OUTPUT}"
+          echo "package=${PACKAGE}" >> "${GITHUB_OUTPUT}"
 
       - name: Select latest Xcode
         run: |
@@ -97,6 +102,11 @@ jobs:
             3. Launch — look for the lock icon in the menu bar
 
             Ad-hoc signed. If macOS blocks open: **System Settings → Privacy & Security → Open Anyway**.
+
+            ## GitHub Package (GHCR)
+            ```bash
+            oras pull ${{ steps.meta.outputs.package }}:${{ steps.meta.outputs.tag }}
+            ```
           files: |
             dist/${{ steps.meta.outputs.zip }}
             dist/${{ steps.meta.outputs.zip }}.sha256
@@ -104,3 +114,42 @@ jobs:
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup ORAS
+        uses: oras-project/setup-oras@v1
+
+      - name: Publish macOS zip to GitHub Packages (GHCR)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGE: ${{ steps.meta.outputs.package }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          ZIP: ${{ steps.meta.outputs.zip }}
+          REPO_URL: https://github.com/${{ github.repository }}
+        run: |
+          set -euo pipefail
+          echo "${GITHUB_TOKEN}" | oras login ghcr.io \
+            --username "${{ github.actor }}" \
+            --password-stdin
+
+          push_tag() {
+            local ref="$1"
+            oras push "${ref}" \
+              --artifact-type application/vnd.heyq02.keyboard-source-locker.macos+zip \
+              --annotation "org.opencontainers.image.source=${REPO_URL}" \
+              --annotation "org.opencontainers.image.version=${TAG}" \
+              --annotation "org.opencontainers.image.title=Keyboard Source Locker" \
+              --annotation "org.opencontainers.image.description=macOS menu-bar Keyboard Source Locker app bundle (${TAG})" \
+              "dist/${ZIP}:application/zip" \
+              "dist/${ZIP}.sha256:text/plain"
+          }
+
+          push_tag "${PACKAGE}:${TAG}"
+          push_tag "${PACKAGE}:latest"
+          echo "Published ${PACKAGE}:${TAG} and ${PACKAGE}:latest"
+
+      - name: Package URL
+        run: |
+          REPO_LC="$(echo '${{ github.event.repository.name }}' | tr '[:upper:]' '[:lower:]')"
+          echo "GHCR package: ${{ steps.meta.outputs.package }}:${{ steps.meta.outputs.tag }}"
+          echo "UI: https://github.com/${{ github.repository }}/pkgs/container/${REPO_LC}%2Fmacos"
+          echo "If the package is private, set visibility to Public under GitHub → Packages."

@@ -94,12 +94,27 @@ Product intent lives in [docs/DEMAND.md](docs/DEMAND.md) and [docs/PRD.md](docs/
 | Workflow | Trigger | What it does |
 | --- | --- | --- |
 | [Test](.github/workflows/test.yml) | Every push / PR | Runs tests and compiles the app |
-| [Release](.github/workflows/release.yml) | Git tags `v*` | Tests, packages `.app`, publishes a GitHub Release |
+| [Release](.github/workflows/release.yml) | Git tags `v*` | Tests, packages `.app`, publishes a GitHub Release **and** uploads the zip to GitHub Packages (GHCR) |
 
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
 ```
+
+The release attaches `KeyboardSourceLocker-vX.Y.Z-macos.zip`, its SHA-256, and the raw `KeyboardSourceLockerApp` binary.
+
+### GitHub Packages (GHCR)
+
+After each `v*` tag, the macOS zip is also published as an OCI artifact:
+
+```bash
+# requires: https://oras.land
+oras pull ghcr.io/heyq02/keyboard-source-locker/macos:v0.0.3
+# or
+oras pull ghcr.io/heyq02/keyboard-source-locker/macos:latest
+```
+
+If the package does not appear publicly, open the package on GitHub → **Package settings** → set visibility to **Public**.
 
 ## Contributing
 

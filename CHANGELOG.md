@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Release workflow publishes the macOS zip to **GitHub Packages (GHCR)** via ORAS after creating the GitHub Release
+
 ## [0.0.3] - 2026-10-28
 
 ### Added
