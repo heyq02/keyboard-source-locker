@@ -11,7 +11,7 @@
   "devDependencies": {
     "@types/node": "^26.6.5",
     "bumpp": "^12.3.0",
-    "changelogithub": "^13.0.0",
+    "changelogithub": "^15.0.5",
     "typescript": "^7.0.2",
     "vite-plus": "catalog:"
   },
