@@ -89,6 +89,7 @@ vp run build     # compile the app
 vp run start     # run via SwiftPM
 vp run package   # dist/KeyboardSourceLocker.app (Swift reads package.json)
 vp run check     # debug compile smoke check
+vp run coverage  # CoreTestRunner + llvm-cov (≥90% lines on src/KeyboardSourceLocker)
 vp run clean     # remove .build and dist
 ```
 

@@ -5,6 +5,11 @@
 /node_modules
 xcuserdata/
 DerivedData/
+*.profraw
+*.profdata
+/default.profraw
+/coverage.profdata
+
 .swiftpm/configuration/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .swiftpm/xcode/package.xcworkspace/xcuserdata/

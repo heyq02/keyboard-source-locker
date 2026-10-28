@@ -8,6 +8,9 @@ enum InputSourceLockSessionTests {
         listsInstalledSourcesFromCatalog()
         loadsPersistedSettingsOnStart()
         changingTargetPersistsAndRestoresNewOne()
+        startIsIdempotent()
+        stopClearsHandlerAndDisables()
+        setLockedTargetWhileDisabledDoesNotSelect()
     }
 
     private static func restoresViaCatalogAfterDebounce() {
@@ -132,5 +135,72 @@ enum InputSourceLockSessionTests {
         scheduler.advance(by: .milliseconds(200))
         Expect.equal(catalog.activeID, InputSourceID("abc"), "active source restored to new locked target")
         Expect.equal(catalog.selectedHistory.last, InputSourceID("abc"), "last catalog select is new locked target")
+    }
+
+    private static func startIsIdempotent() {
+        let catalog = FakeInputSourceCatalog(
+            sources: [InputSource(id: InputSourceID("abc"), displayName: "ABC")],
+            activeID: InputSourceID("abc")
+        )
+        let session = InputSourceLockSession(
+            catalog: catalog,
+            settingsStore: LockSettingsStore(backend: InMemorySettingsBackend()),
+            scheduler: ManualScheduler(),
+            debounceInterval: .milliseconds(200)
+        )
+        session.start()
+        session.start()
+        Expect.equal(catalog.handlerSetCount, 1, "start is idempotent for change handler")
+    }
+
+    private static func stopClearsHandlerAndDisables() {
+        let catalog = FakeInputSourceCatalog(
+            sources: [
+                InputSource(id: InputSourceID("abc"), displayName: "ABC"),
+                InputSource(id: InputSourceID("wechat"), displayName: "微信输入法"),
+            ],
+            activeID: InputSourceID("wechat")
+        )
+        let scheduler = ManualScheduler()
+        let session = InputSourceLockSession(
+            catalog: catalog,
+            settingsStore: LockSettingsStore(backend: InMemorySettingsBackend()),
+            scheduler: scheduler,
+            debounceInterval: .milliseconds(200)
+        )
+        session.start()
+        session.setLockedTarget(InputSourceID("wechat"))
+        session.setEnabled(true)
+        session.stop()
+
+        Expect.equal(session.isEnabled, false, "stop disables lock controller")
+        Expect.true(catalog.handler == nil, "stop clears active-source handler")
+
+        catalog.simulateSystemSwitch(to: InputSourceID("abc"))
+        scheduler.advance(by: .milliseconds(200))
+        Expect.true(catalog.selectedHistory.isEmpty, "no restores after stop")
+    }
+
+    private static func setLockedTargetWhileDisabledDoesNotSelect() {
+        let catalog = FakeInputSourceCatalog(
+            sources: [
+                InputSource(id: InputSourceID("abc"), displayName: "ABC"),
+                InputSource(id: InputSourceID("wechat"), displayName: "微信输入法"),
+            ],
+            activeID: InputSourceID("abc")
+        )
+        let session = InputSourceLockSession(
+            catalog: catalog,
+            settingsStore: LockSettingsStore(backend: InMemorySettingsBackend()),
+            scheduler: ManualScheduler(),
+            debounceInterval: .milliseconds(200)
+        )
+        session.start()
+        session.setEnabled(false)
+        catalog.clearSelectedHistory()
+        session.setLockedTarget(InputSourceID("wechat"))
+
+        Expect.equal(session.lockedTargetID, InputSourceID("wechat"), "updates locked target while disabled")
+        Expect.true(catalog.selectedHistory.isEmpty, "does not select target while disabled")
     }
 }

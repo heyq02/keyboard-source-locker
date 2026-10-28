@@ -8,10 +8,18 @@ enum AppVersionTests {
         rejectsEmptyVersionInPackageJSON()
         prefersPackageJSONOverBundle()
         usesBundleWhenPackageJSONMissing()
+        fallsBackWhenBothMissing()
+        trimsWhitespacePackageVersion()
         includesBuildWhenDifferent()
         omitsBuildWhenSameAsShortVersion()
+        emptyShortVersionUsesEmergencyFallback()
         menuTitlePrefixesVersion()
         findsPackageJSONInRepoRoot()
+        findsPackageJSONFromNestedDirectory()
+        returnsNilWhenPackageJSONMissingNearby()
+        loadPackageJSONVersionFromRepo()
+        currentMenuTitleNonEmpty()
+        versionFromMissingFileThrows()
     }
 
     private static func parsesVersionFromPackageJSON() {
@@ -49,6 +57,19 @@ enum AppVersionTests {
         Expect.equal(short, "0.0.4", "uses bundle when package.json missing")
     }
 
+    private static func fallsBackWhenBothMissing() {
+        let short = AppVersion.shortVersion(packageJSONVersion: nil, bundleShortVersion: nil)
+        Expect.equal(short, AppVersion.emergencyFallback, "falls back when both missing")
+    }
+
+    private static func trimsWhitespacePackageVersion() {
+        let short = AppVersion.shortVersion(
+            packageJSONVersion: "   ",
+            bundleShortVersion: "1.0.0"
+        )
+        Expect.equal(short, "1.0.0", "whitespace package version falls through to bundle")
+    }
+
     private static func includesBuildWhenDifferent() {
         let text = AppVersion.display(shortVersion: "0.0.4", bundleBuild: "42")
         Expect.equal(text, "0.0.4 (42)", "includes build when different from short version")
@@ -57,6 +78,11 @@ enum AppVersionTests {
     private static func omitsBuildWhenSameAsShortVersion() {
         let text = AppVersion.display(shortVersion: "0.0.4", bundleBuild: "0.0.4")
         Expect.equal(text, "0.0.4", "omits build when same as short version")
+    }
+
+    private static func emptyShortVersionUsesEmergencyFallback() {
+        let text = AppVersion.display(shortVersion: "  ", bundleBuild: nil)
+        Expect.equal(text, AppVersion.emergencyFallback, "empty short version uses emergency fallback")
     }
 
     private static func menuTitlePrefixesVersion() {
@@ -73,4 +99,54 @@ enum AppVersionTests {
             Expect.true(version?.isEmpty == false, "reads non-empty version from repo package.json")
         }
     }
+
+    private static func findsPackageJSONFromNestedDirectory() {
+        let root = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+        let nested = root.appendingPathComponent("Tests/CoreTestRunner")
+        let url = AppVersion.findPackageJSON(startingAt: nested)
+        Expect.true(url != nil, "walks parents to find package.json")
+    }
+
+    private static func returnsNilWhenPackageJSONMissingNearby() {
+        let temp = FileManager.default.temporaryDirectory
+            .appendingPathComponent("ksl-no-package-\(UUID().uuidString)", isDirectory: true)
+        try? FileManager.default.createDirectory(at: temp, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: temp) }
+
+        // Start deep enough that walking 8 parents stays under /tmp or similar without hitting the repo.
+        var deep = temp
+        for i in 0..<6 {
+            deep = deep.appendingPathComponent("d\(i)", isDirectory: true)
+        }
+        try? FileManager.default.createDirectory(at: deep, withIntermediateDirectories: true)
+
+        let url = AppVersion.findPackageJSON(startingAt: deep, bundle: Bundle(for: BundleToken.self))
+        Expect.true(url == nil, "returns nil when package.json is not nearby")
+    }
+
+    private static func loadPackageJSONVersionFromRepo() {
+        let root = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+        let version = AppVersion.loadPackageJSONVersion(startingAt: root, bundle: Bundle(for: BundleToken.self))
+        Expect.true(version?.isEmpty == false, "loadPackageJSONVersion reads repo package.json")
+    }
+
+    private static func currentMenuTitleNonEmpty() {
+        let title = AppVersion.currentMenuTitle(bundle: Bundle(for: BundleToken.self))
+        Expect.true(title.hasPrefix("Version "), "currentMenuTitle prefixes Version")
+        Expect.true(title.count > "Version ".count, "currentMenuTitle includes a version")
+    }
+
+    private static func versionFromMissingFileThrows() {
+        let missing = FileManager.default.temporaryDirectory
+            .appendingPathComponent("missing-package-\(UUID().uuidString).json")
+        var threw = false
+        do {
+            _ = try AppVersion.version(fromPackageJSONAt: missing)
+        } catch {
+            threw = true
+        }
+        Expect.true(threw, "version(fromPackageJSONAt:) throws for missing file")
+    }
 }
+
+private final class BundleToken: NSObject {}

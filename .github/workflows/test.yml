@@ -55,8 +55,8 @@ jobs:
       - name: Resolve packages
         run: swift package resolve
 
-      - name: Run core tests
-        run: pnpm exec vp run test
+      - name: Run core tests with coverage (≥90%)
+        run: pnpm exec vp run coverage
 
       - name: Build app (compile check)
         run: pnpm exec vp run build

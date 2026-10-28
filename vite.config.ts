@@ -12,6 +12,7 @@ export default defineConfig({
             package: "node scripts/package.mjs",
             clean: "node scripts/clean.mjs",
             check: "node scripts/check.mjs",
+            coverage: "node scripts/coverage.mjs",
         },
     },
     lint: {

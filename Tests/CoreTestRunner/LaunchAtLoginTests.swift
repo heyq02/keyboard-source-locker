@@ -1,3 +1,4 @@
+import Foundation
 import KeyboardSourceLocker
 
 enum LaunchAtLoginTests {
@@ -6,6 +7,8 @@ enum LaunchAtLoginTests {
         reportsDisabledByDefault()
         enablesAndDisables()
         surfacesRegisterFailure()
+        surfacesGenericFailure()
+        exposesErrorMessage()
     }
 
     private static func reportsDisabledByDefault() {
@@ -37,20 +40,44 @@ enum LaunchAtLoginTests {
         Expect.equal(controller.isEnabled, false, "stays disabled after failure")
         Expect.true(controller.lastErrorDescription != nil, "keeps last error description")
     }
+
+    private static func surfacesGenericFailure() {
+        let service = FakeLaunchAtLoginService(isEnabled: false, genericFailure: true)
+        let controller = LaunchAtLoginController(service: service)
+
+        let ok = controller.setEnabled(true)
+        Expect.equal(ok, false, "surfaces generic failure")
+        Expect.true(
+            controller.lastErrorDescription?.contains("generic boom") == true,
+            "stores localizedDescription for non-LaunchAtLoginError"
+        )
+    }
+
+    private static func exposesErrorMessage() {
+        let error = LaunchAtLoginError.registrationFailed("detail")
+        Expect.equal(error.message, "detail", "LaunchAtLoginError.message exposes detail")
+    }
 }
 
 final class FakeLaunchAtLoginService: LaunchAtLoginServing {
     var isEnabled: Bool
     var shouldFail: Bool
+    var genericFailure: Bool
     private(set) var setCalls: [Bool] = []
 
-    init(isEnabled: Bool, shouldFail: Bool = false) {
+    init(isEnabled: Bool, shouldFail: Bool = false, genericFailure: Bool = false) {
         self.isEnabled = isEnabled
         self.shouldFail = shouldFail
+        self.genericFailure = genericFailure
     }
 
     func setEnabled(_ enabled: Bool) throws {
         setCalls.append(enabled)
+        if genericFailure {
+            throw NSError(domain: "KeyboardSourceLockerTests", code: 1, userInfo: [
+                NSLocalizedDescriptionKey: "generic boom",
+            ])
+        }
         if shouldFail {
             throw LaunchAtLoginError.registrationFailed("not allowed in tests")
         }

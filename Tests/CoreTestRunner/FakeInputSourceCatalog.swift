@@ -4,7 +4,8 @@ final class FakeInputSourceCatalog: InputSourceCatalog {
     private(set) var sources: [InputSource]
     private(set) var activeID: InputSourceID?
     private(set) var selectedHistory: [InputSourceID] = []
-    private var handler: ((InputSourceID) -> Void)?
+    private(set) var handlerSetCount = 0
+    private(set) var handler: ((InputSourceID) -> Void)?
 
     init(sources: [InputSource], activeID: InputSourceID?) {
         self.sources = sources
@@ -23,11 +24,16 @@ final class FakeInputSourceCatalog: InputSourceCatalog {
     }
 
     func setActiveSourceChangeHandler(_ handler: ((InputSourceID) -> Void)?) {
+        handlerSetCount += 1
         self.handler = handler
     }
 
     func simulateSystemSwitch(to id: InputSourceID) {
         activeID = id
         handler?(id)
+    }
+
+    func clearSelectedHistory() {
+        selectedHistory.removeAll()
     }
 }
