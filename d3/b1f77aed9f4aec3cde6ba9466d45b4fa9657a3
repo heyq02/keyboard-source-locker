@@ -1,0 +1,43 @@
+Scripts/package-app.sh
+  s_732803a7907060::t_61b5bf516726e9 12-16,18-19,39-40,50,52
+.github/workflows/release.yml
+  s_732803a7907060::t_7cb26835034240 80-91
+README.md
+  s_732803a7907060::t_e3f7a65455e205 82-83,86-93
+Resources/Info.plist
+  s_732803a7907060::t_119e0c41d87ee9 18,20
+Sources/KeyboardSourceLocker/AppVersion.swift
+  s_732803a7907060::t_0f6458bbafed78 4-6,8-9,11-15,20-77,82-85,87,92-94
+  s_732803a7907060::t_16ea15b0d531fa 95
+CHANGELOG.md
+  s_732803a7907060::t_c2535e8f630045 10-13
+.gitignore
+  s_732803a7907060::t_738602cee0629f 5
+Package.swift
+  s_732803a7907060::t_04a23454212706 23-26,40-41,43
+  s_732803a7907060::t_e7480d44ef3a1e 42
+package.json
+  s_732803a7907060::t_9473ac3d1eb009 2-12
+Tests/CoreTestRunner/AppVersionTests.swift
+  s_732803a7907060::t_e4c705c8839cfb 1,7-10,14,17-20,23-33,36-49,53-54,58-59,63-74
+Makefile
+  s_732803a7907060::t_89a8a5d4e99fa9 2,7-9,19,29
+Sources/VersionTool/main.swift
+  s_732803a7907060::t_8c7ad9bf639711 1-16
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "d3b1f77aed9f4aec3cde6ba9466d45b4fa9657a3",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
