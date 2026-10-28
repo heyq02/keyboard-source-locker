@@ -1,253 +1,89 @@
 ---
 name: code-review
-description: "Review code for actionable defects. Correctness is the core; performance and security are optional sub-cases of the same engine. Anchors on agreements between participants across a boundary, forces a violating execution, and refutes every candidate before reporting. Use when asked to review changes, find bugs, audit a codebase, or check whether a fix is safe."
+description: "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\"."
 ---
 
-# Code Review
+Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
-## Purpose
+- **Standards**: does the code conform to this repo's documented coding standards?
+- **Spec**: does the code faithfully implement the originating issue / spec?
 
-Most review output is noise: a list of things that *look* wrong, unranked, unrefuted, and impossible
-to act on. This skill produces the opposite — a small number of findings, each with a required
-behaviour, a feasible trigger, a concrete contradiction, an observable consequence, and the strongest
-counterargument already checked.
+Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
 
-Its central bet: **the defects reviewers miss are rarely visible inside one file.** They are
-disagreements between two participants that each look reasonable alone — a caller and a callee, a
-producer and a consumer, a writer and a later reader, two branches that should establish the same
-state. A checklist applied file-by-file cannot see those, because the two halves are never in view at
-the same time. So the unit of review here is the **agreement**, not the file.
+The issue tracker should have been provided to you. If not, tell the user to run `/setup-matt-pocock-skills`.
 
-## Structure: one engine, three anchors
+## Process
 
-Code review is the skill. **Correctness is its core** — the dimension generic tooling covers worst,
-and the one described in full below. **Performance and security are sub-cases**: the same engine, the
-same refutation discipline, the same report contract, with a different anchor and one or two extra
-rules each.
+### 1. Pin the fixed point
 
-| Sub-case | Anchor | Where its rules live |
-|---|---|---|
-| **Correctness** *(core, default)* | Agreements between participants across a boundary | This file + `references/correctness-taxonomy.md` |
-| **Performance** | Workload → resource demand → growth or contention → consequence | `references/performance-review.md` |
-| **Security** | Source → trust boundary → sink, with an attacker controlling the source | `references/security-review.md` |
+Whatever the user said is the fixed point (a commit SHA, branch name, tag, `main`, `HEAD~5`, etc.). If they didn't specify one, ask for it.
 
-Read a sub-case's file only when that sub-case is selected. Each is short on purpose: it states what
-*differs*, and the rest of this file still applies.
+Capture the diff command once: `git diff <fixed-point>...HEAD` (three-dot, so the comparison is against the merge-base). Also note the list of commits via `git log <fixed-point>..HEAD --oneline`.
 
-Sub-cases are independently *activated*, not mutually exclusive. One root cause can carry correctness
-and security impact — report it once, with both impacts.
+Before going further, confirm the fixed point resolves (`git rev-parse <fixed-point>`) and the diff is non-empty. A bad ref or empty diff should fail here, not inside two parallel sub-agents.
 
-## Invocation
+### 2. Identify the spec source
 
-```
-/pm-ai-shipping:code-review
-/pm-ai-shipping:code-review dimensions=correctness scope=changes
-/pm-ai-shipping:code-review dimensions=performance,security
-/pm-ai-shipping:code-review dimensions=all
-```
+Look for the originating spec, in this order:
 
-Claude Code ships its own bundled `/code-review`. Use the plugin-qualified form above when you mean
-this one.
+1. Issue references in the commit messages (`#123`, `Closes #45`, GitLab `!67`, etc.), fetched via the workflow in the tracker doc.
+2. A path the user passed as an argument.
+3. A spec file under `docs/`, `specs/`, or `.scratch/` matching the branch name or feature.
+4. If nothing is found, ask the user where the spec is. If they say there isn't one, the **Spec** sub-agent will skip and report "no spec available".
 
-These are instruction arguments, not shell flags.
+### 3. Identify the standards sources
 
-- **Default: `correctness`.** Bare "review this" or "find bugs" means correctness only.
-- An explicit list selects exactly those sub-cases; `all` selects three. Never silently reinterpret
-  an unknown or empty selection — ask.
-- **Scope:** use what was asked. Otherwise review working changes if present, else the repository.
-- **State the selected dimensions, the scope and the comparison baseline before investigating.**
-- Reviewing changes means following dependencies *beyond* the changed lines, and distinguishing
-  defects the change **introduced** from defects it merely **revealed**.
-- Review and report. Apply fixes only when asked.
+Search the repo for every file that documents how code should be written. When `CODING_STANDARDS.md` or `CONTRIBUTING.md` exists, it must be on the list.
 
-## Shared engine
+On top of whatever the repo documents, the Standards axis always carries the **smell baseline** below: a fixed set of Fowler code smells (_Refactoring_, ch.3) that applies even when a repo documents nothing. Two rules bind it:
 
-Every sub-case uses one skeleton. Only the anchor and the refutation rules differ.
+- **The repo overrides.** A documented repo standard always wins; where it endorses something the baseline would flag, suppress the smell.
+- **Always a judgement call.** Each smell is a labelled heuristic ("possible Feature Envy"), never a hard violation. Like any standard here, skip anything tooling already enforces.
 
-**Map a flow → identify an obligation → inspect every participant → construct a violating execution
-→ trace the consequence → attempt refutation → report.**
+Each smell reads *what it is* → *how to fix*; match it against the diff:
 
-Build one minimal map first: inputs, major execution flows, who owns which state, external
-dependencies, observable effects. Each selected sub-case enriches it — do not build three maps, and
-do not make a security-only run wait on correctness mapping.
+- **Mysterious Name**: a function, variable, or type whose name doesn't reveal what it does or holds. → rename it; if no honest name comes, the design's murky.
+- **Duplicated Code**: the same logic shape appears in more than one hunk or file in the change. → extract the shared shape, call it from both.
+- **Feature Envy**: a method that reaches into another object's data more than its own. → move the method onto the data it envies.
+- **Data Clumps**: the same few fields or params keep travelling together (a type wanting to be born). → bundle them into one type, pass that.
+- **Primitive Obsession**: a primitive or string standing in for a domain concept that deserves its own type. → give the concept its own small type.
+- **Repeated Switches**: the same `switch`/`if`-cascade on the same type recurs across the change. → replace with polymorphism, or one map both sites share.
+- **Shotgun Surgery**: one logical change forces scattered edits across many files in the diff. → gather what changes together into one module.
+- **Divergent Change**: one file or module is edited for several unrelated reasons. → split so each module changes for one reason.
+- **Speculative Generality**: abstraction, parameters, or hooks added for needs the spec doesn't have. → delete it; inline back until a real need shows.
+- **Message Chains**: long `a.b().c().d()` navigation the caller shouldn't depend on. → hide the walk behind one method on the first object.
+- **Middle Man**: a class or function that mostly just delegates onward. → cut it, call the real target direct.
+- **Refused Bequest**: a subclass or implementer that ignores or overrides most of what it inherits. → drop the inheritance, use composition.
 
-## Correctness: the agreement engine
+### 4. Spawn both sub-agents in parallel
 
-A *boundary* is semantic, not a file split. It separates a caller and a callee, two callbacks, two
-executions of the same function, a producer and a consumer, or a value written now and read later.
+Issue both sub-agent calls together, in the foreground, and aggregate the reports they return.
 
-For each consequential agreement, hold these in working notes — not in the report:
+**Standards sub-agent prompt** should include:
 
-```
-Participants:
-Value, entity or effect exchanged:
-Authority (who decides the real answer):
-Identity and lifetime/version:
-Required relationship:
-Evidence for that relationship:
-Relevant transitions or orderings:
-Observable consumer or consequence:
-```
+- The full diff command and commit list.
+- The list of standards-source files you found in step 3, **plus the smell baseline from step 3** pasted in full (the sub-agent has no other access to it).
+- The brief: "Report, per file/hunk where relevant, (a) every place the diff violates a documented standard: cite the standard (file + the rule); and (b) any baseline smell you spot: name it and quote the hunk. Distinguish hard violations from judgement calls: documented-standard breaches can be hard, but baseline smells are always judgement calls, and a documented repo standard overrides the baseline. Skip anything tooling enforces. Under 400 words."
 
-**Establish the obligation without inventing intent.** Evidence comes from specifications,
-documented contracts, language or protocol semantics, tests that encode an expectation, or a
-necessary producer/consumer relationship. A consumer's implementation alone does not prove the
-consumer is right. Where participants disagree, say why the disagreement produces a *wrong outcome* —
-sometimes the contradiction is certain while which side should change is genuinely open. Missing
-documentation is a limitation, not automatically a finding.
+**Spec sub-agent prompt** should include:
 
-**Start where agreements are most likely to break:** values transformed or negotiated, identities
-reassigned, work becoming asynchronous, state persisted and reloaded, several effects that must
-agree. Then do a local pass over ordinary decisions, arithmetic, boundaries and error branches — the
-anchor must not become a filter that discards plain bugs.
+- The diff command and commit list.
+- The path or fetched contents of the spec.
+- The brief: "Report: (a) requirements the spec asked for that are missing or partial; (b) behaviour in the diff that wasn't asked for (scope creep); (c) requirements that look implemented but where the implementation looks wrong. Quote the spec line for each finding. Under 400 words."
 
-### Force a violating execution
+If the spec is missing, skip the Spec sub-agent and note this in the final report.
 
-A suspicion is not a finding until you construct the execution that breaks it. Where the
-implementation permits:
+### 5. Aggregate
 
-- make a **requested** value differ from the **accepted or effective** one;
-- keep two operations live at once and vary their completion order;
-- change the relevant identity or generation between observation and use;
-- compare distinct transitions that should end in equivalent state;
-- inject failure between effects, and interruption before completion;
-- exercise empty, exact-boundary and adjacent-boundary inputs.
+Present the two reports under `## Standards` and `## Spec` headings, verbatim or lightly cleaned. Do **not** merge or rerank findings, because the two axes are deliberately separate (see _Why two axes_).
 
-Establish that each case is actually reachable. Do not assume it.
+End with a one-line summary: total findings per axis, and the worst issue _within each axis_ (if any). Don't pick a single winner across axes: that's the reranking the separation exists to prevent.
 
-### Two lenses that need a forced probe, not a mention
+## Why two axes
 
-Across a large evaluation of planted runtime defects in real codebases, two classes were almost never
-*even reported* by strong agents — not missed at the fix, missed at the look. Naming them in a
-checklist will not help; each needs an explicit probe:
+A change can pass one axis and fail the other:
 
-1. **Authority reconciliation.** Follow a proposed value through validation, normalisation,
-   negotiation or commit, and find downstream state still derived from the **proposal** where the
-   authority can return something different. *A requested value is not an applied value.* Probe:
-   force them apart and ask what still reads the request.
-2. **Identity and correlation.** Trace how an operation's result finds its originating entity, then
-   establish that the key is unique, stable and live for long enough — under overlap, reordering,
-   removal and reuse. A label, a position or arrival order is suspicious exactly when those
-   properties can fail. Probe: run two operations concurrently and complete them out of order.
+- Code that follows every standard but implements the wrong thing → **Standards pass, Spec fail.**
+- Code that does exactly what the issue asked but breaks the project's conventions → **Spec pass, Standards fail.**
 
-The full set of thirteen diagnostic lenses, each with a detection tell, is in
-`references/correctness-taxonomy.md`. They are overlapping lenses, not a quota to fill.
-
-## Refutation: the discipline that makes this worth running
-
-A candidate becomes a finding only with all five:
-
-1. **A supported obligation** — what must hold, and on what evidence.
-2. **A feasible execution** — inputs, state and ordering the real system permits.
-3. **A concrete contradiction** — where the obligation fails.
-4. **An observable consequence** — wrong output, state, effect, completion or progress.
-5. **An examined counterargument** — the strongest mechanism that would prevent or repair it.
-
-Actively hunt for the refutation: an enclosing guarantee that makes the execution impossible;
-synchronisation excluding the interleaving; reconciliation before any consequential read; an
-intentional contract; a precondition excluding the input; a different owner responsible for it.
-
-| Outcome | Rule |
-|---|---|
-| **Keep** | Evidence establishes the defect; the counterargument checked does not prevent it. |
-| **Drop** | Cited evidence defeats the execution, the obligation or the consequence. |
-| **Unresolved** | An essential contract or runtime fact is unknown. List it *separately from findings*. |
-
-Do not import the security sub-case's attacker/victim test into correctness. **A correctness defect
-can harm only the person who triggered it and still be serious.** Equally, "keep unless disproved" is
-too permissive here — an ungrounded suspicion with no constructed execution is not a finding. When
-both sub-cases are active, apply each test only to its own dimension.
-
-**Absorption is not prevention.** The most expensive refutation mistake is finding something
-downstream that happens to hide the defect - a cache that usually holds the value, a retry that
-usually succeeds, a default that is usually right - and dropping the finding. That is not a
-guarantee, it is a coincidence with good odds, and it fails the day the absorber is cold, evicted or
-reconfigured. Drop only on a mechanism that makes the execution *impossible*, and say which mechanism
-it was. For the same reason, **"it works nearly always" describes a race, not a refutation** - a
-timing window that usually resolves correctly is a finding, and the fact that you had to reason about
-which side usually wins is the evidence.
-
-Passing tests, unfamiliar code, a suspicious name, a missing test and a sibling difference are
-evidence to investigate — none of them is proof, and none is refutation. Deduplicate by violated
-agreement and root cause, never by file. There is no findings quota; zero supported findings is a
-valid result.
-
-## Parallelism
-
-Fan out over **complete flows or connected groups of agreements** — never over files, and never one
-agent per taxonomy class. Partitioning by file is precisely the split that hides cross-boundary
-defects, which are the ones worth finding.
-
-1. The coordinator builds the initial map and identifies shared state.
-2. Each worker gets a bounded flow, its participants, the selected sub-cases and open questions.
-3. Workers inspect **both sides** of their agreements and may follow dependencies outside their list.
-4. Workers return candidates, cited evidence, completed refutations and unresolved relationships.
-5. The coordinator reconciles assumptions and any relationship that crosses assignments.
-6. Strong candidates get a separate verification pass before they are reported.
-
-**Allow overlapping reads.** Two workers reading the same authority is far cheaper than either one
-holding half its contract. Keep integration capacity in reserve: an unresolved relationship spanning
-two assignments stays unexamined until someone closes it. One level of fan-out is the target; if
-delegation is unavailable or the scope is small, run the same procedure sequentially.
-
-**Run workers on the strongest model available, and match the current session's effort level.** This
-is recall-first work: a missed cross-boundary flow is the costly failure, and a worker that silently
-drops to a cheaper model or a lower effort is the cheapest way to lose one. If any worker is rerouted
-or downgraded, say which in the report — a reader who assumes one model saw everything will
-misjudge the coverage.
-
-**One model. Name it on every worker.** Fan-out here buys coverage, not a second opinion. Pass the
-coordinator's own model explicitly on each spawn — "inherit" is not a routing decision, and a worker
-that quietly lands on a cheaper model is the easiest way to lose a finding. **Do not bring in a
-different model**, to review or to cross-check, unless you are explicitly asked: mixing models makes
-the result unattributable, and when this skill is being measured or compared across models, one
-foreign worker invalidates the number. The independent second-model pass is a separate,
-explicitly-invoked step (`/ship-check` Step 6), never something this skill reaches for on its own.
-
-**Tell workers they are reading, not editing.** A review worker needs to read, search and navigate;
-it must not modify the tree. State that in the worker's instructions — a worker that starts editing
-drifts from reviewing into "helpfully" fixing and stops reporting what it silently repaired, and the
-findings can no longer be checked against the code they describe. Say it in the prompt rather than
-assuming the host will enforce it, and confirm the tree is unchanged when the run ends.
-
-## Report
-
-Lead with supported findings, ordered by impact. Keep severity separate from evidential strength.
-
-```
-Review scope:
-Comparison baseline:
-Selected dimensions:
-
-[Severity] [Dimension] Concrete consequence
-  Expectation:  required behaviour, and the evidence for it
-  Trigger:      feasible preconditions and execution
-  Defect:       the violated relationship
-  Evidence:     source locations for EVERY participant
-  Impact:       observable consequence and affected scope
-  Refutation:   strongest counterargument checked, and why it fails
-  Remedy:       minimal correction to the violated relationship
-  Verification: what was executed, versus established from source
-
-Coverage:
-Unexamined areas and essential unknowns:
-```
-
-Cite **both** participants for a cross-boundary defect, and do not group findings only by file — that
-hides the relationship the review exists to find.
-
-**Coverage means work performed, not boxes ticked.** For each selected sub-case report: examined with
-supported findings · examined, none supported · not applicable, with reason · not examined, with
-reason. Zero findings in a category does **not** mean "not covered", and a table of ticks is not
-evidence of completeness. Say "no supported findings in the examined scope" — never that the code is
-bug-free.
-
-## Notes
-
-- Say explicitly what is well built. A review that only accuses is easy to dismiss.
-- The two sub-cases have mature commands behind them: `/security-audit-static` (trust boundaries,
-  sinks, OWASP backstop) and `/performance-audit-static` (over-fetching, indexes, caching). Run the
-  command when the sub-case is the whole job; use the reference file when it is one dimension of a
-  broader review. This skill does not restate either.
-- For the doc-vs-code axis use the `intended-vs-implemented` skill.
-- A static review produces code-review findings, not confirmed exploits or measured regressions.
+Reporting them separately stops one axis from masking the other.
