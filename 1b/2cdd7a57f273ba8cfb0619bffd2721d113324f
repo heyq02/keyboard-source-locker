@@ -1,0 +1,34 @@
+.github/workflows/release.yml
+  s_732803a7907060::t_b32956da05f117 138-146
+  s_732803a7907060::t_1fa9f3d3f7fb2a 50-55,103-113,118,127-137,147-148
+  s_732803a7907060::t_16699af1d17831 149
+README.md
+  s_732803a7907060::t_31fdde78d95c53 96-97
+  s_732803a7907060::t_341042cc8320c6 107
+SECURITY.md
+  s_732803a7907060::t_ef3e72b6a7c50d 1-12
+package.json
+  s_732803a7907060::t_7ebc9bb8826411 8-9,12-13
+CODE_OF_CONDUCT.md
+  s_732803a7907060::t_cb9a9d877247e1 1-26
+CHANGELOG.md
+  s_732803a7907060::t_8e725de278e75d 10-13
+CONTRIBUTING.md
+  s_732803a7907060::t_b02c6da3258487 1-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "1b2cdd7a57f273ba8cfb0619bffd2721d113324f",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
