@@ -26,11 +26,6 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
       - name: Resolve release tag
         id: meta
         run: |
@@ -51,6 +46,12 @@ jobs:
           echo "version=${VERSION}" >> "${GITHUB_OUTPUT}"
           echo "zip=KeyboardSourceLocker-${TAG}-macos.zip" >> "${GITHUB_OUTPUT}"
           echo "package=${PACKAGE}" >> "${GITHUB_OUTPUT}"
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ steps.meta.outputs.tag }}
 
       - name: Select latest Xcode
         run: |
@@ -99,24 +100,22 @@ jobs:
           shasum -a 256 "${{ steps.meta.outputs.zip }}" | tee "${{ steps.meta.outputs.zip }}.sha256"
           ls -lh "${{ steps.meta.outputs.zip }}"*
 
-      - name: Create GitHub Release
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Create GitHub Release notes with changelogithub
+        run: npx changelogithub@13
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload release assets
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.meta.outputs.tag }}
           name: Keyboard Source Locker ${{ steps.meta.outputs.tag }}
-          generate_release_notes: true
-          body: |
-            ## Install
-            1. Download `KeyboardSourceLocker-${{ steps.meta.outputs.tag }}-macos.zip`
-            2. Unzip and move `KeyboardSourceLocker.app` to `/Applications`
-            3. Launch — look for the lock icon in the menu bar
-
-            Ad-hoc signed. If macOS blocks open: **System Settings → Privacy & Security → Open Anyway**.
-
-            ## GitHub Package (GHCR)
-            ```bash
-            oras pull ${{ steps.meta.outputs.package }}:${{ steps.meta.outputs.tag }}
-            ```
+          # Keep changelogithub body; only attach binaries.
           files: |
             dist/${{ steps.meta.outputs.zip }}
             dist/${{ steps.meta.outputs.zip }}.sha256
@@ -124,6 +123,29 @@ jobs:
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Append install notes to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          ZIP: ${{ steps.meta.outputs.zip }}
+          PACKAGE: ${{ steps.meta.outputs.package }}
+        run: |
+          set -euo pipefail
+          EXISTING="$(gh release view "${TAG}" --json body -q .body)"
+          {
+            printf '%s\n\n' "${EXISTING}"
+            printf '## Install\n'
+            printf '1. Download `%s`\n' "${ZIP}"
+            printf '2. Unzip and move `KeyboardSourceLocker.app` to `/Applications`\n'
+            printf '3. Launch — look for the lock icon in the menu bar\n\n'
+            printf 'Ad-hoc signed. If macOS blocks open: **System Settings → Privacy & Security → Open Anyway**.\n\n'
+            printf '## GitHub Package (GHCR)\n'
+            printf '```bash\n'
+            printf 'oras pull %s:%s\n' "${PACKAGE}" "${TAG}"
+            printf '```\n'
+          } > /tmp/release-body.md
+          gh release edit "${TAG}" --notes-file /tmp/release-body.md
 
       - name: Setup ORAS
         uses: oras-project/setup-oras@v1

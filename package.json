@@ -5,9 +5,11 @@
   "description": "macOS menu-bar utility that locks the active keyboard input source",
   "scripts": {
     "version": "swift run -c release VersionTool",
-    "release": "bumpp --commit \"chore: release v%s\" --tag \"v%s\" --push"
+    "release": "bumpp --commit \"chore: release v%s\" --tag \"v%s\" --push",
+    "changelog": "changelogithub"
   },
   "devDependencies": {
-    "bumpp": "^10.2.0"
+    "bumpp": "^10.2.0",
+    "changelogithub": "^13.0.0"
   }
 }
