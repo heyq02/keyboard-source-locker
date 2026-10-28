@@ -32,4 +32,22 @@ macOS 菜单栏小工具：把当前键盘输入法锁定为你指定的那一�
 
 ## 许可证
 
-以 [MIT](LICENSE) 发布。作者 [@heyq02](https://github.com/heyq02) 与[贡献者](https://github.com/heyq02/keyboard-source-locker/graphs/contributors)。
+<!-- automd:contributors author="heyq02" license="MIT" -->
+
+Published under the [MIT](https://github.com/heyq02/keyboard-source-locker/blob/main/LICENSE) license.
+Made by [@heyq02](https://github.com/heyq02) and [community](https://github.com/heyq02/keyboard-source-locker/graphs/contributors) 💛
+<br><br>
+<a href="https://github.com/heyq02/keyboard-source-locker/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=heyq02/keyboard-source-locker" />
+</a>
+
+<!-- /automd -->
+
+<!-- automd:with-automd -->
+
+---
+
+_🤖 auto updated with [automd](https://automd.unjs.io)_
+
+<!-- /automd -->
+
