@@ -38,9 +38,17 @@ Default debounce is **200 ms**.
 
 ## CI
 
-GitHub Actions (`.github/workflows/macos-build.yml`) on `macos-15`:
+| Workflow | Trigger | What it does |
+| --- | --- | --- |
+| [Test](.github/workflows/test.yml) | Every push / PR | Runs `CoreTestRunner` and compiles the app |
+| [Release](.github/workflows/release.yml) | Git tags `v*` | Tests, packages `.app`, creates a GitHub Release |
 
-1. Runs `CoreTestRunner`
-2. Builds a release `.app`
-3. Uploads `KeyboardSourceLocker-macos` and the raw binary as artifacts
+Publish a release:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+The release attaches `KeyboardSourceLocker-vX.Y.Z-macos.zip` and the raw `KeyboardSourceLockerApp` binary.
 
