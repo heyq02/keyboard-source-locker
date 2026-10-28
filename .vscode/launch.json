@@ -1,64 +1,64 @@
 {
-    "configurations": [
-        {
-            "type": "swift",
-            "request": "launch",
-            "args": [],
-            "cwd": "${workspaceFolder:keyboard-source-locker}",
-            "name": "Debug KeyboardSourceLockerApp",
-            "target": "KeyboardSourceLockerApp",
-            "configuration": "debug",
-            "preLaunchTask": "swift: Build Debug KeyboardSourceLockerApp"
-        },
-        {
-            "type": "swift",
-            "request": "launch",
-            "args": [],
-            "cwd": "${workspaceFolder:keyboard-source-locker}",
-            "name": "Release KeyboardSourceLockerApp",
-            "target": "KeyboardSourceLockerApp",
-            "configuration": "release",
-            "preLaunchTask": "swift: Build Release KeyboardSourceLockerApp"
-        },
-        {
-            "type": "swift",
-            "request": "launch",
-            "args": [],
-            "cwd": "${workspaceFolder:keyboard-source-locker}",
-            "name": "Debug CoreTestRunner",
-            "target": "CoreTestRunner",
-            "configuration": "debug",
-            "preLaunchTask": "swift: Build Debug CoreTestRunner"
-        },
-        {
-            "type": "swift",
-            "request": "launch",
-            "args": [],
-            "cwd": "${workspaceFolder:keyboard-source-locker}",
-            "name": "Release CoreTestRunner",
-            "target": "CoreTestRunner",
-            "configuration": "release",
-            "preLaunchTask": "swift: Build Release CoreTestRunner"
-        },
-        {
-            "type": "swift",
-            "request": "launch",
-            "args": [],
-            "cwd": "${workspaceFolder:keyboard-source-locker}",
-            "name": "Debug VersionTool",
-            "target": "VersionTool",
-            "configuration": "debug",
-            "preLaunchTask": "swift: Build Debug VersionTool"
-        },
-        {
-            "type": "swift",
-            "request": "launch",
-            "args": [],
-            "cwd": "${workspaceFolder:keyboard-source-locker}",
-            "name": "Release VersionTool",
-            "target": "VersionTool",
-            "configuration": "release",
-            "preLaunchTask": "swift: Build Release VersionTool"
-        }
-    ]
+  "configurations": [
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:keyboard-source-locker}",
+      "name": "Debug KeyboardSourceLockerApp",
+      "target": "KeyboardSourceLockerApp",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug KeyboardSourceLockerApp"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:keyboard-source-locker}",
+      "name": "Release KeyboardSourceLockerApp",
+      "target": "KeyboardSourceLockerApp",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release KeyboardSourceLockerApp"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:keyboard-source-locker}",
+      "name": "Debug CoreTestRunner",
+      "target": "CoreTestRunner",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug CoreTestRunner"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:keyboard-source-locker}",
+      "name": "Release CoreTestRunner",
+      "target": "CoreTestRunner",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release CoreTestRunner"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:keyboard-source-locker}",
+      "name": "Debug VersionTool",
+      "target": "VersionTool",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug VersionTool"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:keyboard-source-locker}",
+      "name": "Release VersionTool",
+      "target": "VersionTool",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release VersionTool"
+    }
+  ]
 }
