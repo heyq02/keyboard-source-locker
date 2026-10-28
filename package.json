@@ -1,6 +1,6 @@
 {
   "name": "keyboard-source-locker",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "description": "A starter for creating a TypeScript package.",
   "homepage": "https://github.com/author/library#readme",
   "bugs": {
