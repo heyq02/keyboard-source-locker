@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Build Resources/AppIcon.icns from images/app-icon.jpg
+ * Build static/AppIcon.icns from images/app-icon.jpg
  */
 import { existsSync, mkdirSync, rmSync } from "node:fs";
 import path from "node:path";
@@ -8,10 +8,10 @@ import path from "node:path";
 import { rootDir, run } from "./lib.mjs";
 
 const src = path.join(rootDir, "images", "app-icon.jpg");
-const resources = path.join(rootDir, "Resources");
-const iconset = path.join(resources, "AppIcon.iconset");
-const icns = path.join(resources, "AppIcon.icns");
-const master = path.join(resources, ".app-icon-1024.png");
+const staticDir = path.join(rootDir, "static");
+const iconset = path.join(staticDir, "AppIcon.iconset");
+const icns = path.join(staticDir, "AppIcon.icns");
+const master = path.join(staticDir, ".app-icon-1024.png");
 
 if (!existsSync(src)) {
   console.error(`error: missing icon source at ${src}`);

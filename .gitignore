@@ -9,9 +9,9 @@ DerivedData/
 *.profdata
 /default.profraw
 /coverage.profdata
-Resources/AppIcon.icns
-Resources/AppIcon.iconset/
-Resources/.app-icon-1024.png
+static/AppIcon.icns
+static/AppIcon.iconset/
+static/.app-icon-1024.png
 
 .swiftpm/configuration/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
