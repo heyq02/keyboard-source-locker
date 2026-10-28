@@ -1,5 +1,7 @@
 # Keyboard Source Locker
 
+English | [简体中文](./README.zh-CN.md)
+
 [![Test](https://github.com/heyq02/keyboard-source-locker/actions/workflows/test.yml/badge.svg)](https://github.com/heyq02/keyboard-source-locker/actions/workflows/test.yml)
 [![Release](https://github.com/heyq02/keyboard-source-locker/actions/workflows/release.yml/badge.svg)](https://github.com/heyq02/keyboard-source-locker/actions/workflows/release.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
