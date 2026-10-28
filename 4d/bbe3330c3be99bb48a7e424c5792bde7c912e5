@@ -1,0 +1,14 @@
+.github/dependabot.yml
+  h_a57efa94f24ca5 8-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "4dbbe3330c3be99bb48a7e424c5792bde7c912e5",
+  "prompts": {},
+  "humans": {
+    "h_a57efa94f24ca5": {
+      "author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
