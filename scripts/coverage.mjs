@@ -56,7 +56,7 @@ const report = runCapture("xcrun", [
   "report",
   bin,
   `-instr-profile=${profdata}`,
-  `-ignore-filename-regex=(\\.build/|tests1/|/usr/|CoreTestRunner)`,
+  `-ignore-filename-regex=(\\.build/|tests/|/usr/|CoreTestRunner)`,
   sources,
 ]);
 console.log(report);
