@@ -28,6 +28,7 @@ let package = Package(
     targets: [
         .target(
             name: "KeyboardSourceLocker",
+            path: "src/KeyboardSourceLocker",
             linkerSettings: [
                 .linkedFramework("Carbon"),
                 .linkedFramework("ServiceManagement"),
@@ -35,11 +36,13 @@ let package = Package(
         ),
         .executableTarget(
             name: "KeyboardSourceLockerApp",
-            dependencies: ["KeyboardSourceLocker"]
+            dependencies: ["KeyboardSourceLocker"],
+            path: "src/KeyboardSourceLockerApp"
         ),
         .executableTarget(
             name: "VersionTool",
-            dependencies: ["KeyboardSourceLocker"]
+            dependencies: ["KeyboardSourceLocker"],
+            path: "src/VersionTool"
         ),
         // CLT-only machines lack a working XCTest/Swift Testing runner.
         // CoreTestRunner is the verified red→green entrypoint: `swift run CoreTestRunner`
