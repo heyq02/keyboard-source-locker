@@ -22,37 +22,53 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <header class="nav">
-      <a class="brand" href="./">
-        <img src="./app-icon.jpg" alt="" width="28" height="28" />
+    <header
+      class="sticky top-0 z-10 mx-auto flex max-w-4xl items-center justify-between gap-4 bg-white/80 px-6 py-4 backdrop-blur-md"
+    >
+      <a class="inline-flex items-center gap-2 font-semibold text-fg no-underline" href="./">
+        <img class="rounded-brand-sm" src="./app-icon.jpg" alt="" width="28" height="28" />
         <span>Keyboard Source Locker</span>
       </a>
-      <nav>
-        <a href="#features">Features</a>
-        <a href="#install">Install</a>
-        <a href="https://github.com/heyq02/keyboard-source-locker">GitHub</a>
+      <nav class="flex gap-5 text-body">
+        <a class="text-fg-muted no-underline hover:text-fg" href="#features">Features</a>
+        <a class="text-fg-muted no-underline hover:text-fg" href="#install">Install</a>
+        <a
+          class="text-fg-muted no-underline hover:text-fg"
+          href="https://github.com/heyq02/keyboard-source-locker"
+          >GitHub</a
+        >
       </nav>
     </header>
 
-    <main>
-      <section class="hero">
-        <p class="eyebrow">macOS 14+ · Menu bar · MIT</p>
-        <h1>Stop fighting the input source switcher.</h1>
-        <p class="lede">
+    <main class="mx-auto max-w-4xl px-6 pb-16">
+      <section class="pt-16 pb-6 text-center">
+        <p class="mb-3 text-caption tracking-widest text-fg-muted uppercase">
+          macOS 14+ · Menu bar · MIT
+        </p>
+        <h1
+          class="mx-auto mb-4 max-w-[18ch] text-[clamp(2rem,5vw,2.5rem)] leading-[1.4] font-medium tracking-tight"
+        >
+          Stop fighting the input source switcher.
+        </h1>
+        <p class="mx-auto mb-6 max-w-[60ch] text-subtitle text-fg-muted">
           macOS won't let you remove <strong>ABC</strong>, so it can switch on you at the worst
           moment. Keyboard Source Locker snaps the active input source back to the one you chose —
           after a short 200&nbsp;ms debounce.
         </p>
-        <div class="actions">
+        <div class="mb-12 flex flex-wrap justify-center gap-3">
           <a
-            class="button primary"
+            class="inline-block rounded-full border border-transparent bg-accent-strong px-6 py-3 font-semibold text-white no-underline transition-colors duration-300 ease-brand hover:bg-accent hover:no-underline"
             href="https://github.com/heyq02/keyboard-source-locker/releases/latest"
             >Download for macOS</a
           >
-          <a class="button" href="https://github.com/heyq02/keyboard-source-locker">View source</a>
+          <a
+            class="inline-block rounded-full border border-border-subtle bg-black/6 px-6 py-3 font-semibold text-fg no-underline transition-colors duration-300 ease-brand hover:bg-black/12 hover:no-underline"
+            href="https://github.com/heyq02/keyboard-source-locker"
+            >View source</a
+          >
         </div>
         <img
-          class="shot"
+          class="block w-full rounded-brand-lg border border-border-subtle shadow-[0_18px_40px_rgb(0_0_0/8%)]"
           src="./hero-banner.jpg"
           alt="Keyboard Source Locker menu-bar app"
           width="800"
@@ -60,42 +76,51 @@
         />
       </section>
 
-      <section id="features" class="features">
-        <article>
-          <h2>Lock any input source</h2>
-          <p>Pick a target from the menu bar — for example 微信输入法 — and turn the lock on.</p>
+      <section id="features" class="my-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="rounded-brand-lg border border-border-muted bg-canvas-subtle p-6">
+          <h2 class="mb-2 text-title font-semibold">Lock any input source</h2>
+          <p class="m-0 text-body text-fg-muted">
+            Pick a target from the menu bar — for example 微信输入法 — and turn the lock on.
+          </p>
         </article>
-        <article>
-          <h2>200 ms debounce</h2>
-          <p>Rapid switches cancel each other, so only the settled source triggers a restore.</p>
+        <article class="rounded-brand-lg border border-border-muted bg-canvas-subtle p-6">
+          <h2 class="mb-2 text-title font-semibold">200 ms debounce</h2>
+          <p class="m-0 text-body text-fg-muted">
+            Rapid switches cancel each other, so only the settled source triggers a restore.
+          </p>
         </article>
-        <article>
-          <h2>Menu bar only</h2>
-          <p>No Dock icon, no windows. Launch at login is one click away.</p>
+        <article class="rounded-brand-lg border border-border-muted bg-canvas-subtle p-6">
+          <h2 class="mb-2 text-title font-semibold">Menu bar only</h2>
+          <p class="m-0 text-body text-fg-muted">
+            No Dock icon, no windows. Launch at login is one click away.
+          </p>
         </article>
       </section>
 
-      <section id="install" class="install">
+      <section
+        id="install"
+        class="grid items-center gap-8 rounded-brand-lg border border-border-muted bg-canvas-muted p-8 sm:grid-cols-2"
+      >
         <div>
-          <h2>Install</h2>
-          <ol>
-            <li>
+          <h2 class="mt-0 mb-4 text-title-lg font-semibold">Install</h2>
+          <ol class="m-0 list-decimal pl-5 text-fg-muted">
+            <li class="mb-1">
               Download the latest
               <a href="https://github.com/heyq02/keyboard-source-locker/releases/latest">Release</a>
               zip.
             </li>
-            <li>
+            <li class="mb-1">
               Unzip and move <code>KeyboardSourceLocker.app</code> to <code>/Applications</code>.
             </li>
             <li>Launch it — look for the lock icon in the menu bar.</li>
           </ol>
-          <p class="note">
+          <p class="mt-4 mb-0 text-body text-fg-muted">
             First launch may need
             <strong>System Settings → Privacy &amp; Security → Open Anyway</strong>.
           </p>
         </div>
         <img
-          class="shot small"
+          class="mx-auto block w-full max-w-[400px] rounded-brand-lg border border-border-subtle shadow-[0_18px_40px_rgb(0_0_0/8%)]"
           src="./menu-preview.jpg"
           alt="Menu bar menu preview"
           width="400"
@@ -104,9 +129,11 @@
       </section>
     </main>
 
-    <footer>
+    <footer
+      class="mx-auto flex max-w-4xl flex-wrap justify-between gap-2 border-t border-border-muted px-6 py-6 text-caption text-fg-muted"
+    >
       <span>© <span id="year">2026</span> Ari He · MIT License</span>
-      <span class="version">v<span id="version">0.0.0</span></span>
+      <span>v<span id="version">0.0.0</span></span>
     </footer>
 
     <script type="module" src="./main.ts"></script>

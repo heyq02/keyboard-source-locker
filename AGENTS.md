@@ -20,7 +20,7 @@ macOS menu-bar utility that locks the active keyboard input source (Swift Packag
 | `vite.config.ts`              | `run.tasks` for `vp run …`                                        |
 | `static/Info.plist`           | Packaged `.app` metadata (`LSUIElement`, icon, copyright)         |
 | `images/app-icon.jpg`         | Source art for `vp run icon` → `static/AppIcon.icns`              |
-| `site/`                       | Static landing page (Vite root) → `dist-site/` for GitHub Pages   |
+| `site/`                       | Landing page (Vite root, Tailwind + Primer tokens) → `dist-site/` |
 
 Target `path`s are explicit under `src/` in `Package.swift`.
 

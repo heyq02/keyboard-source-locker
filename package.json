@@ -19,10 +19,12 @@
     "changelog": "changelogithub"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.5",
     "automd": "0.4.3",
     "bumpp": "^12.3.0",
     "changelogithub": "^15.0.5",
+    "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite-plus": "catalog:"
   },
