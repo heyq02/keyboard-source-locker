@@ -1,0 +1,28 @@
+README.md
+  h_a57efa94f24ca5 67-75,94-97
+docs/ARCHITECTURE.md
+  h_a57efa94f24ca5 5-9
+docs/PRD.md
+  h_a57efa94f24ca5 3-10,71-77,89-94,100-109,130-142,148-154,207-216,222-228,234-239,252-255,257
+docs/README.md
+  h_a57efa94f24ca5 3-7
+package.json
+  h_a57efa94f24ca5 2-27
+pnpm-workspace.yaml
+  h_a57efa94f24ca5 5,10
+tsconfig.json
+  h_a57efa94f24ca5 2-19
+vite.config.ts
+  h_a57efa94f24ca5 4-14,16-27
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "d94de3e642ab3687bcb97e99fe9bb30c7e30640b",
+  "prompts": {},
+  "humans": {
+    "h_a57efa94f24ca5": {
+      "author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
