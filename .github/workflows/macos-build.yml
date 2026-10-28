@@ -1,0 +1,65 @@
+name: macOS Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: macos-build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test-package:
+    name: Build, test, package
+    runs-on: macos-15
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select latest Xcode
+        run: |
+          # Prefer the newest installed Xcode on the runner.
+          LATEST="$(ls -1d /Applications/Xcode*.app 2>/dev/null | sort -V | tail -1 || true)"
+          if [[ -n "${LATEST}" ]]; then
+            echo "Using ${LATEST}"
+            sudo xcode-select -s "${LATEST}/Contents/Developer"
+          fi
+          xcodebuild -version
+          swift --version
+
+      - name: Cache SwiftPM
+        uses: actions/cache@v4
+        with:
+          path: .build
+          key: ${{ runner.os }}-swiftpm-${{ hashFiles('Package.swift', 'Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-swiftpm-
+
+      - name: Resolve packages
+        run: swift package resolve
+
+      - name: Run core tests
+        run: swift run -c release CoreTestRunner
+
+      - name: Build and package .app
+        run: |
+          chmod +x Scripts/package-app.sh
+          Scripts/package-app.sh release
+
+      - name: Upload app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KeyboardSourceLocker-macos
+          path: dist/KeyboardSourceLocker.app
+          if-no-files-found: error
+
+      - name: Upload raw binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: KeyboardSourceLockerApp-binary
+          path: .build/release/KeyboardSourceLockerApp
+          if-no-files-found: error

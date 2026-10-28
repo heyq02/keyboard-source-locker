@@ -21,6 +21,13 @@ swift run CoreTestRunner
 swift run KeyboardSourceLockerApp
 ```
 
+Or package a menu-bar `.app` (LSUIElement, no Dock icon):
+
+```bash
+Scripts/package-app.sh release
+open dist/KeyboardSourceLocker.app
+```
+
 The app appears in the menu bar (`lock` / `lock.open` icon):
 
 - **Lock: On/Off** — toggle global locking
@@ -28,3 +35,12 @@ The app appears in the menu bar (`lock` / `lock.open` icon):
 - **Quit** — stop monitoring and exit
 
 Default debounce is **200 ms**.
+
+## CI
+
+GitHub Actions (`.github/workflows/macos-build.yml`) on `macos-15`:
+
+1. Runs `CoreTestRunner`
+2. Builds a release `.app`
+3. Uploads `KeyboardSourceLocker-macos` and the raw binary as artifacts
+
