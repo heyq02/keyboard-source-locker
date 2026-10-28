@@ -1,0 +1,21 @@
+README.md
+  s_732803a7907060::t_07a4f7026346de 128,137,139-145
+Sources/KeyboardSourceLocker/SMAppServiceLaunchAtLogin.swift
+  s_732803a7907060::t_f699770430e178 26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "20d89767e042793e2fb0eea7d5e850bc55eb5b0b",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
