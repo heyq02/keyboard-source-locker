@@ -1,22 +1,33 @@
-# Post caption
+# Post
 
-## Title
+## Ready to post
 
+**Title**
+
+```
 Stop unexpected ABC switching
+```
 
-## Body
+**Caption**
 
-macOS won’t let you remove ABC, so it can jump onto your keyboard at the worst moment — mid-sentence, mid-IME. Keyboard Source Locker is a tiny menu-bar app that locks the active input source to the one you pick (微信输入法, or anything else installed), then snaps back after a short 200 ms debounce when the system drifts away. Free, open source, macOS 14+.
+```
+macOS won’t let you remove ABC —
+so it jumps in mid-sentence, mid-IME.
 
-Download: https://keyboard-source-locker.heyq02.com
+Keyboard Source Locker is a tiny menu-bar app:
+• lock any installed input source (e.g. 微信输入法)
+• snap back after a 200 ms debounce
+• free, open source, macOS 14+
+
+↓ Download
+https://keyboard-source-locker.heyq02.com
+
+#macOS #InputMethod #Productivity #OpenSource #微信输入法
+```
 
 ---
 
-## Hashtags (optional)
-
-`#macOS` `#InputMethod` `#Productivity` `#OpenSource` `#微信输入法`
-
-## Carousel pages
+## Carousel
 
 | # | File | Beat |
 | - | ---- | ---- |
