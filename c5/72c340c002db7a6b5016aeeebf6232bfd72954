@@ -1,0 +1,51 @@
+package.json
+  s_732803a7907060::t_22435f4b5a2eec 5,8-14
+.github/workflows/release.yml
+  s_732803a7907060::t_063f4647817ef5 75-79,84,99
+  s_732803a7907060::t_10c5aabb0c765a 89
+docs/ARCHITECTURE.md
+  s_732803a7907060::t_4978a43da4f2eb 44
+.editorconfig
+  s_732803a7907060::t_1b4752d1f1c062 17-18
+README.md
+  s_732803a7907060::t_f112d6d8b14418 77,82-88,91
+  s_732803a7907060::t_3a995a2e4cf1ee 54,58
+.github/workflows/test.yml
+  s_732803a7907060::t_a118fab3bd1314 22-26,36,51,54
+CONTRIBUTING.md
+  s_732803a7907060::t_29cfb758206c2f 7-8,10-12
+CHANGELOG.md
+  s_732803a7907060::t_b47d3b1d2d98a5 17
+scripts/version.mjs
+  s_732803a7907060::t_2d1901b55e8806 1-14
+scripts/build.mjs
+  s_732803a7907060::t_a77f4fac1c78e0 1-5
+scripts/check.mjs
+  s_732803a7907060::t_910e5ab0b745a5 1-7
+scripts/clean.mjs
+  s_732803a7907060::t_ecd7a767076c82 1-9
+scripts/lib.mjs
+  s_732803a7907060::t_7cd1df2221646b 1-29
+scripts/package.mjs
+  s_732803a7907060::t_a33568700c8da8 1-62
+scripts/run-app.mjs
+  s_732803a7907060::t_3a26d933ac90ab 1-4
+scripts/test.mjs
+  s_732803a7907060::t_1e93a6a7bdc381 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "c572c340c002db7a6b5016aeeebf6232bfd72954",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
