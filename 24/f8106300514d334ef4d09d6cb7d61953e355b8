@@ -1,0 +1,16 @@
+.agents/skills/write-swift/SKILL.md
+  h_a57efa94f24ca5 1-396
+skills-lock.json
+  h_a57efa94f24ca5 412-417
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "24f8106300514d334ef4d09d6cb7d61953e355b8",
+  "prompts": {},
+  "humans": {
+    "h_a57efa94f24ca5": {
+      "author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
