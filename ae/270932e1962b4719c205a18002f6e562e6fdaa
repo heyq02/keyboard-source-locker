@@ -1,0 +1,23 @@
+Sources/KeyboardSourceLocker/AppVersion.swift
+  s_732803a7907060::t_0c642807438f3a 5
+Resources/Info.plist
+  s_732803a7907060::t_1afa634e15996f 18,20
+CHANGELOG.md
+  s_732803a7907060::t_c15e6c761303c8 10-11,43-44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "ae270932e1962b4719c205a18002f6e562e6fdaa",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
