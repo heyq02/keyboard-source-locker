@@ -3,6 +3,8 @@ import KeyboardSourceLocker
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
+    private static let projectURL = URL(string: "https://github.com/heyq02/keyboard-source-locker")!
+
     private var statusItem: NSStatusItem?
     private var session: InputSourceLockSession!
 
@@ -19,12 +21,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem = item
-        if let button = item.button {
-            button.image = NSImage(
-                systemSymbolName: session.isEnabled ? "lock.fill" : "lock.open",
-                accessibilityDescription: "Keyboard Source Locker"
-            )
-        }
+        item.button?.toolTip = "Keyboard Source Locker"
+        updateStatusIcon()
         rebuildMenu()
     }
 
@@ -39,7 +37,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let lockItem = NSMenuItem(
             title: lockTitle,
             action: #selector(toggleLock),
-            keyEquivalent: ""
+            keyEquivalent: "l"
         )
         lockItem.state = session.isEnabled ? .on : .off
         lockItem.target = self
@@ -48,31 +46,48 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let targetName = session.installedSources
             .first { $0.id == session.lockedTargetID }?
             .displayName ?? "(none)"
-        menu.addItem(NSMenuItem(
+        let lockedItem = NSMenuItem(
             title: "Locked to: \(targetName)",
             action: nil,
             keyEquivalent: ""
-        ))
+        )
+        lockedItem.isEnabled = false
+        menu.addItem(lockedItem)
 
         menu.addItem(.separator())
 
         let selectMenu = NSMenu()
-        for source in session.installedSources {
-            let item = NSMenuItem(
-                title: source.displayName,
-                action: #selector(selectTarget(_:)),
-                keyEquivalent: ""
-            )
-            item.representedObject = source.id.rawValue
-            item.state = source.id == session.lockedTargetID ? .on : .off
-            item.target = self
-            selectMenu.addItem(item)
+        let sources = session.installedSources
+        if sources.isEmpty {
+            let empty = NSMenuItem(title: "No selectable sources", action: nil, keyEquivalent: "")
+            empty.isEnabled = false
+            selectMenu.addItem(empty)
+        } else {
+            for source in sources {
+                let item = NSMenuItem(
+                    title: source.displayName,
+                    action: #selector(selectTarget(_:)),
+                    keyEquivalent: ""
+                )
+                item.representedObject = source.id.rawValue
+                item.state = source.id == session.lockedTargetID ? .on : .off
+                item.target = self
+                selectMenu.addItem(item)
+            }
         }
         let selectRoot = NSMenuItem(title: "Select Input Source", action: nil, keyEquivalent: "")
         selectRoot.submenu = selectMenu
         menu.addItem(selectRoot)
 
         menu.addItem(.separator())
+
+        let about = NSMenuItem(
+            title: "About Keyboard Source Locker",
+            action: #selector(openAbout),
+            keyEquivalent: ""
+        )
+        about.target = self
+        menu.addItem(about)
 
         let quit = NSMenuItem(
             title: "Quit",
@@ -83,9 +98,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(quit)
 
         statusItem?.menu = menu
+        updateStatusIcon()
+    }
+
+    private func updateStatusIcon() {
         statusItem?.button?.image = NSImage(
             systemSymbolName: session.isEnabled ? "lock.fill" : "lock.open",
-            accessibilityDescription: "Keyboard Source Locker"
+            accessibilityDescription: session.isEnabled
+                ? "Keyboard Source Locker — locked"
+                : "Keyboard Source Locker — unlocked"
         )
     }
 
@@ -98,6 +119,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard let raw = sender.representedObject as? String else { return }
         session.setLockedTarget(InputSourceID(raw))
         rebuildMenu()
+    }
+
+    @objc private func openAbout() {
+        NSWorkspace.shared.open(Self.projectURL)
     }
 
     @objc private func quitApp() {

@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest an idea for Keyboard Source Locker
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What pain does this solve? Who hits it?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How you imagine it working in the menu bar / lock behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: prd
+    attributes:
+      label: Scope check
+      options:
+        - label: I checked docs/PRD.md and this is not already marked out of scope for v1 (or I explain why it should change)
+          required: false

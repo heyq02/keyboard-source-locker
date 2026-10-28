@@ -1,54 +1,97 @@
 # Keyboard Source Locker
 
-macOS menu-bar utility that locks the active keyboard input source to a user-chosen target (see [docs/PRD.md](docs/PRD.md)).
+[![Test](https://github.com/heyq02/keyboard-source-locker/actions/workflows/test.yml/badge.svg)](https://github.com/heyq02/keyboard-source-locker/actions/workflows/test.yml)
+[![Release](https://github.com/heyq02/keyboard-source-locker/actions/workflows/release.yml/badge.svg)](https://github.com/heyq02/keyboard-source-locker/actions/workflows/release.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![macOS 14+](https://img.shields.io/badge/macOS-14%2B-black.svg)](https://github.com/heyq02/keyboard-source-locker)
+[![Swift 6](https://img.shields.io/badge/Swift-6.2+-F05138.svg)](https://swift.org)
 
-## Requirements
+A tiny macOS **menu-bar** utility that locks your active keyboard input source to the one you choose.
 
-- macOS 14+
-- Swift 6.3 toolchain (`xcode-select` Command Line Tools or Xcode)
+macOS will not let you remove the built-in **ABC** layout, so the system can switch to it unexpectedly. Keyboard Source Locker watches for those switches and restores your preferred source after a short debounce.
 
-## Test (TDD entrypoint)
+<p align="center">
+  <img src="images/abc-input-source.png" alt="macOS Input Sources showing ABC cannot be removed" width="420" />
+  <img src="images/wx-input-source.png" alt="WeChat Input Method in Input Sources" width="420" />
+</p>
 
-Command Line Tools alone do not run XCTest / Swift Testing reliably, so core behavior is verified with:
+## Features
+
+- Lock to **any installed, selectable** keyboard input source
+- **Global** lock (same target in every app)
+- **Short debounce** (200 ms) so brief intentional switches are less likely to fight the locker
+- Menu-bar controls: status, toggle, target picker, quit
+- Persists lock state and target across launches
+- Filters out palette sources (Emoji, Press & Hold) and non-selectable IME parents
+
+## Install
+
+### From a GitHub Release (recommended)
+
+1. Open the latest [Release](https://github.com/heyq02/keyboard-source-locker/releases/latest)
+2. Download `KeyboardSourceLocker-v*-macos.zip`
+3. Unzip and move `KeyboardSourceLocker.app` to `/Applications`
+4. Launch it (menu-bar lock icon; no Dock icon)
+
+First launch from the internet may require **System Settings → Privacy & Security → Open Anyway**.
+
+### Build from source
 
 ```bash
-swift run CoreTestRunner
-```
-
-## Run the app
-
-```bash
-swift run KeyboardSourceLockerApp
-```
-
-Or package a menu-bar `.app` (LSUIElement, no Dock icon):
-
-```bash
-Scripts/package-app.sh release
+git clone https://github.com/heyq02/keyboard-source-locker.git
+cd keyboard-source-locker
+make package
 open dist/KeyboardSourceLocker.app
 ```
 
-The app appears in the menu bar (`lock` / `lock.open` icon):
+Requirements: **macOS 14+**, Swift **6.2+** (Xcode or Command Line Tools).
 
-- **Lock: On/Off** — toggle global locking
-- **Select Input Source** — choose the locked target
-- **Quit** — stop monitoring and exit
+## Usage
 
-Default debounce is **200 ms**.
+1. Click the menu-bar lock icon
+2. **Select Input Source** → pick your preferred source (e.g. 微信输入法)
+3. Turn **Lock: On**
+4. Switch to ABC (menu bar or shortcut) — after ~200 ms it should snap back
 
-## CI
+| Menu item | Action |
+| --- | --- |
+| Lock: On / Off | Enable or disable restoring |
+| Locked to: … | Shows the current locked target |
+| Select Input Source | Choose the locked target |
+| About | Opens the project page |
+| Quit | Stop monitoring and exit |
+
+## Development
+
+```bash
+make test      # run CoreTestRunner (26+ cases)
+make build     # compile the app
+make run       # run from SwiftPM
+make package   # produce dist/KeyboardSourceLocker.app
+```
+
+Core logic is covered by a CLT-friendly test harness (`swift run CoreTestRunner`) because Swift Testing / XCTest are unreliable under Command Line Tools alone.
+
+Product intent lives in [docs/DEMAND.md](docs/DEMAND.md) and [docs/PRD.md](docs/PRD.md). Technical overview: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## CI & releases
 
 | Workflow | Trigger | What it does |
 | --- | --- | --- |
-| [Test](.github/workflows/test.yml) | Every push / PR | Runs `CoreTestRunner` and compiles the app |
-| [Release](.github/workflows/release.yml) | Git tags `v*` | Tests, packages `.app`, creates a GitHub Release |
-
-Publish a release:
+| [Test](.github/workflows/test.yml) | Every push / PR | Runs tests and compiles the app |
+| [Release](.github/workflows/release.yml) | Git tags `v*` | Tests, packages `.app`, publishes a GitHub Release |
 
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
-The release attaches `KeyboardSourceLocker-vX.Y.Z-macos.zip` and the raw `KeyboardSourceLockerApp` binary.
+## Contributing
 
+Bugs, ideas, and PRs are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Please read the [Code of Conduct](CODE_OF_CONDUCT.md) and [Security policy](SECURITY.md).
+
+## License
+
+[MIT](LICENSE) © Ari He

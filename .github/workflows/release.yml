@@ -70,18 +70,19 @@ jobs:
         run: swift package resolve
 
       - name: Run core tests
-        run: swift run -c release CoreTestRunner
+        run: make test
 
       - name: Build and package .app
-        run: |
-          chmod +x Scripts/package-app.sh
-          Scripts/package-app.sh release
+        env:
+          VERSION: ${{ steps.meta.outputs.version }}
+        run: make package
 
       - name: Zip app bundle
         run: |
           cd dist
           ditto -c -k --keepParent KeyboardSourceLocker.app "${{ steps.meta.outputs.zip }}"
-          ls -lh "${{ steps.meta.outputs.zip }}"
+          shasum -a 256 "${{ steps.meta.outputs.zip }}" | tee "${{ steps.meta.outputs.zip }}.sha256"
+          ls -lh "${{ steps.meta.outputs.zip }}"*
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -89,8 +90,16 @@ jobs:
           tag_name: ${{ steps.meta.outputs.tag }}
           name: Keyboard Source Locker ${{ steps.meta.outputs.tag }}
           generate_release_notes: true
+          body: |
+            ## Install
+            1. Download `KeyboardSourceLocker-${{ steps.meta.outputs.tag }}-macos.zip`
+            2. Unzip and move `KeyboardSourceLocker.app` to `/Applications`
+            3. Launch — look for the lock icon in the menu bar
+
+            Ad-hoc signed. If macOS blocks open: **System Settings → Privacy & Security → Open Anyway**.
           files: |
             dist/${{ steps.meta.outputs.zip }}
+            dist/${{ steps.meta.outputs.zip }}.sha256
             .build/release/KeyboardSourceLockerApp
           fail_on_unmatched_files: true
         env:

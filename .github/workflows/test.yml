@@ -42,7 +42,7 @@ jobs:
         run: swift package resolve
 
       - name: Run core tests
-        run: swift run -c release CoreTestRunner
+        run: make test
 
       - name: Build app (compile check)
-        run: swift build -c release --product KeyboardSourceLockerApp
+        run: make build

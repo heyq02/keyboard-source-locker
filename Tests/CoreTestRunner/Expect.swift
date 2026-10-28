@@ -14,8 +14,20 @@ enum Expect {
         }
     }
 
-    static func equal<T: Equatable>(_ actual: T, _ expected: T, _ message: String, file: StaticString = #fileID, line: UInt = #line) {
-        `true`(actual == expected, "\(message) — got \(actual), expected \(expected)", file: file, line: line)
+    static func equal<T: Equatable>(
+        _ actual: T,
+        _ expected: T,
+        _ message: String,
+        file: StaticString = #fileID,
+        line: UInt = #line
+    ) {
+        if actual == expected {
+            passes += 1
+            print("  ✔ \(message)")
+        } else {
+            failures += 1
+            print("  ✘ \(message) — got \(actual), expected \(expected) (\(file):\(line))")
+        }
     }
 
     static func finish() -> Int32 {
