@@ -1,0 +1,22 @@
+README.md
+  s_732803a7907060::t_dd75a95bb7f1c5 113-114
+.github/workflows/release.yml
+  s_732803a7907060::t_694f24ac6e6f7d 23
+  s_732803a7907060::t_f6377cddab9365 143
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "3f3b4f081dc6e0927953ccc493559dec9db06aa6",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
