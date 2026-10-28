@@ -1,0 +1,21 @@
+README.zh-CN.md
+  s_732803a7907060::t_2ebe5368d60468 1-35
+README.md
+  s_732803a7907060::t_a8d00abd0b5ee4 3-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "f2e371a4aa4faf944695d1107a831a6f73b86830",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
