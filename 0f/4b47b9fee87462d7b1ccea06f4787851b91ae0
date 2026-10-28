@@ -1,0 +1,25 @@
+CHANGELOG.md
+  s_732803a7907060::t_2798cf8ed0cbbc 10-13
+README.md
+  s_732803a7907060::t_44f6f4bef38632 97,104-117
+  s_732803a7907060::t_ed343bc2f9eb09 118
+.github/workflows/release.yml
+  s_732803a7907060::t_029630ca223ce1 150,153-155
+  s_732803a7907060::t_32ffe6463cac9b 16,24,47-49,53,105-109,117-149,151-152
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0f4b47b9fee87462d7b1ccea06f4787851b91ae0",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
