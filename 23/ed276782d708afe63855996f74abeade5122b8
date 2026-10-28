@@ -1,0 +1,25 @@
+tests/CoreTestRunner/AppVersionTests.swift
+  s_732803a7907060::t_934926bcbf4552 1-152
+AGENTS.md
+  s_732803a7907060::t_934926bcbf4552 18,45
+Package.swift
+  s_732803a7907060::t_934926bcbf4552 52
+scripts/coverage.mjs
+  s_732803a7907060::t_934926bcbf4552 59
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "23ed276782d708afe63855996f74abeade5122b8",
+  "prompts": {},
+  "sessions": {
+    "s_732803a7907060": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "22a7c344-9209-4f75-8e1a-6ae3815fda5a",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
