@@ -109,7 +109,7 @@ After each `v*` tag, the macOS zip is also published as an OCI artifact:
 
 ```bash
 # requires: https://oras.land
-oras pull ghcr.io/heyq02/keyboard-source-locker/macos:v0.0.3
+oras pull ghcr.io/heyq02/keyboard-source-locker/macos:v0.0.4
 # or
 oras pull ghcr.io/heyq02/keyboard-source-locker/macos:latest
 ```
