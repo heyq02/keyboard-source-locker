@@ -29,11 +29,11 @@
 
 **内置 ABC**（减号往往是灰的，删不掉）
 
-![macOS 输入法列表中的 ABC](https://raw.githubusercontent.com/heyq02/keyboard-source-locker/main/images/abc-input-source.png)
+![macOS 输入法列表中的 ABC](https://img14.360buyimg.com/imagetools/jfs/t1/550905/37/9897/94338/6ae2d698Fd5be8b68/03e65003805a4726.png)
 
 **第三方输入法**（例如微信输入法，通常可以正常移除）
 
-![macOS 输入法列表中的微信输入法](https://raw.githubusercontent.com/heyq02/keyboard-source-locker/main/images/wx-input-source.png)
+![macOS 输入法列表中的微信输入法](https://img12.360buyimg.com/imagetools/jfs/t1/556435/40/2132/102536/6ae2d698F3fe3c019/03e6500380ffd8f0.png)
 
 📌 **现象归纳**
 
@@ -148,7 +148,7 @@ sudo open ~/Library/Preferences/com.apple.HIToolbox.plist
 
 **Keyboard Source Locker**
 
-![Keyboard Source Locker 预览](https://raw.githubusercontent.com/heyq02/keyboard-source-locker/main/images/hero-banner.jpg)
+![Keyboard Source Locker 预览](https://img10.360buyimg.com/imagetools/jfs/t1/552220/23/7303/40450/6ae2d698F377461b5/03e65002d0c98d29.jpg)
 
 | 项目 | 说明 |
 | --- | --- |
@@ -158,7 +158,7 @@ sudo open ~/Library/Preferences/com.apple.HIToolbox.plist
 | 不会做的事 | 不删系统 ABC；不改第三方输入法内部中英文模式 |
 | 许可证 | MIT，源码公开 |
 
-🔗 [产品主页](https://keyboard-source-locker.heyq02.com/) · [最新下载](https://github.com/heyq02/keyboard-source-locker/releases/latest) · [源码仓库](https://github.com/heyq02/keyboard-source-locker)
+🔗 [产品主页](https://keyboard-source-locker.heyq02.com/) · [GitHub 最新下载](https://github.com/heyq02/keyboard-source-locker/releases/latest) · [CSDN 下载](https://download.csdn.net/download/m0_66681776/93775063) · [源码仓库](https://github.com/heyq02/keyboard-source-locker)
 
 ---
 
@@ -166,17 +166,23 @@ sudo open ~/Library/Preferences/com.apple.HIToolbox.plist
 
 ### 步骤 1 · 下载并安装
 
-1. 打开 [Releases 最新页](https://github.com/heyq02/keyboard-source-locker/releases/latest)  
-2. 下载 zip，解压得到 `KeyboardSourceLocker.app`  
-3. 拖到 `/Applications`  
-4. 首次从网络下载启动时，若被拦截，到 **系统设置 → 隐私与安全性 → 仍要打开**
+任选一种下载方式
+
+- **CSDN 资源**（本站读者可直接下）→ [download.csdn.net/…/93775063](https://download.csdn.net/download/m0_66681776/93775063)  
+- **GitHub Releases** → [最新 zip](https://github.com/heyq02/keyboard-source-locker/releases/latest)  
+
+然后
+
+1. 解压得到 `KeyboardSourceLocker.app`  
+2. 拖到 `/Applications`  
+3. 首次从网络下载启动时，若被拦截，到 **系统设置 → 隐私与安全性 → 仍要打开**
 
 ✅ **可见结果**  
 菜单栏出现锁图标，Dock **没有**常驻图标。
 
 ### 步骤 2 · 选中目标输入法并锁定
 
-![菜单栏操作示意](https://raw.githubusercontent.com/heyq02/keyboard-source-locker/main/images/menu-preview.jpg)
+![菜单栏操作示意](https://img14.360buyimg.com/imagetools/jfs/t1/549339/3/9757/36110/6ae2d698F16d4b737/03e6480360181aa6.jpg)
 
 1. 点击菜单栏锁图标  
 2. **Select Input Source** → 选中你的目标（例如微信输入法）  
