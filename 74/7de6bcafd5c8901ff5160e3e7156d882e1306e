@@ -1,0 +1,19 @@
+docs/blog/CSDN.md
+  s_9b4993ae32431c::t_bf4d9399f34356 1-85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "747de6bcafd5c8901ff5160e3e7156d882e1306e",
+  "prompts": {},
+  "sessions": {
+    "s_9b4993ae32431c": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "9758cff1-d4f8-48ef-a8d4-12832fc3f311",
+        "model": "default"
+      },
+      "human_author": "heyongqi10 <heyongqi10@jd.com>"
+    }
+  }
+}
