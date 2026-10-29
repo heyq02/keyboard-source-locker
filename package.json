@@ -1,6 +1,6 @@
 {
   "name": "keyboard-source-locker",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "private": true,
   "description": "macOS menu-bar utility that locks the active keyboard input source",
   "homepage": "https://github.com/heyq02/keyboard-source-locker",
