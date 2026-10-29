@@ -158,7 +158,7 @@ sudo open ~/Library/Preferences/com.apple.HIToolbox.plist
 | 不会做的事 | 不删系统 ABC；不改第三方输入法内部中英文模式 |
 | 许可证 | MIT，源码公开 |
 
-🔗 [产品主页](https://keyboard-source-locker.heyq02.com/) · [GitHub 最新下载](https://github.com/heyq02/keyboard-source-locker/releases/latest) · [CSDN 下载](https://download.csdn.net/download/m0_66681776/93775063) · [源码仓库](https://github.com/heyq02/keyboard-source-locker)
+🔗 [产品主页](https://keyboard-source-locker.heyq02.com/) · [GitHub 最新下载](https://github.com/heyq02/keyboard-source-locker/releases/latest) · [CSDN 下载](https://download.csdn.net/download/m0_66681776/93775063) · [GitHub 源码](https://github.com/heyq02/keyboard-source-locker) · [GitCode 镜像](https://gitcode.com/heyq02/keyboard-source-locker)
 
 ---
 
@@ -239,4 +239,4 @@ sudo open ~/Library/Preferences/com.apple.HIToolbox.plist
 2. [伪斜杠青年 · 移除 ABC 及密码框副作用记录](https://i.lckiss.com/?p=8981)  
 3. [ningxiaowa/mac-new · 删除 ABC 步骤与已知问题](https://github.com/ningxiaowa/mac-new)  
 4. [Anionex/input-source-lock · 锁定思路与关闭文稿自动切换建议](https://github.com/Anionex/input-source-lock)  
-5. [Keyboard Source Locker](https://github.com/heyq02/keyboard-source-locker)  
+5. [Keyboard Source Locker · GitHub](https://github.com/heyq02/keyboard-source-locker) · [GitCode 镜像](https://gitcode.com/heyq02/keyboard-source-locker)  
