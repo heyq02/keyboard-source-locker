@@ -19,7 +19,7 @@
     "changelog": "changelogithub"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.5",
     "@types/node": "^26.6.6",
     "automd": "0.4.3",
     "bumpp": "^12.3.0",
